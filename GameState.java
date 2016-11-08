@@ -53,6 +53,10 @@ public class GameState {
 	}
 
 	private GameState() {
+		this.equipment.put("head", null);
+		this.equipment.put("chest", null);
+		this.equipment.put("leg", null);
+		
 	}
 
 	void restore(String filename) throws FileNotFoundException,
@@ -212,28 +216,30 @@ public class GameState {
 		
 	}
 	/**
-	 * addItemToEquipped add item to the correct equipment slot
+	 * Add item to the correct equipment slot
+	 * if an item is already equip swap the item
 	 * @param item take in item
 	 */
 	public void addItemToEquipped(Item item){
 		
 	}
 	/**
-	 * removeItemFromEquipped remove item from the equipment slot
-	 * @param item
+	 * Remove item from the equipment slot
+	 * @param item take in item
 	 */
 	public void removeItemFromEquipped(Item item){
 		
 	}
 	/**
-	 * changeRoomLighting changes some room lighting using a timer
+	 * Changes some room lighting using a timer.
+	 * If its on it turn it off and vice versa.
 	 */
 	void changeRoomLighting(){
 		
 	}
 	/**
-	 * recieveWound take in the damage that is calculated by during combat
-	 * @param wound
+	 * Take in the damage that is calculated by during combat
+	 * @param wound take in wound
 	 */
 	public void reciveWound(Wound wound){
 		

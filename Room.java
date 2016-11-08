@@ -12,6 +12,9 @@ public class Room {
 	private boolean beenHere;
 	private ArrayList<Exit> exits;
 	private ArrayList<Item> items;
+	private ArrayList<NPC> NPC;
+	private boolean light;
+	private boolean hideName;
 
 	Room(String title) {
 		init();
@@ -110,6 +113,7 @@ public class Room {
 	private void init() {
 		exits = new ArrayList<Exit>();
 		items = new ArrayList<Item>();
+		NPC = new ArrayList<NPC>();
 		beenHere = false;
 	}
 
@@ -173,10 +177,17 @@ public class Room {
 		}
 
 	}
-
+	/**
+	 * Describe the room. Hide the name if a revealing event have not been trigger
+	 * hide the description of the room if the adventurer have been in the room.
+	 * @return description of the room.
+	 */
 	public String describe() {
 		String description;
-		if (beenHere) {
+		if(hideName){
+			description = "??????????"+ "/n";
+		}
+		else if (beenHere && !hideName) {
 			description = title +"\n";
 		} else {
 			description = title + "\n" + desc;
@@ -190,9 +201,9 @@ public class Room {
 				description += "There is a "+item+".";
 			count++;
 		}
-		for (Exit exit : exits) {
-			description += "\n" + exit.describe();
-		}
+		//for (Exit exit : exits) {
+		//	description += "\n" + exit.describe();
+		//}
 		beenHere = true;
 		return description;
 	}
@@ -238,5 +249,33 @@ public class Room {
 	{
 		return this.items;
 
+	}
+	/**
+	 * Add NPC too the room from dungeon file
+	 * @param NPC take in NPC
+	 */
+	void addNPC(NPC NPC){
+		
+	}
+	/**
+	 * Remove NPC in the case that it dies or move to another location
+	 * @param NPC take in NPC
+	 */
+	void removeNPC(NPC NPC){
+		
+	}
+	/**
+	 * Change the room lighting.
+	 * @param status take in the status
+	 */
+	public void setLight(boolean status){
+		
+	}
+	/**
+	 * Use when the trigger event happen to show the room title
+	 * @param status take in the status
+	 */
+	public void setHideName(boolean status){
+		
 	}
 }
