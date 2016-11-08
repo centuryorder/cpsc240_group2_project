@@ -1,6 +1,7 @@
-package hendrawan_borkv3;
+package Group_Project_Bork;
 /**
- * Created by Stephen Well Son on 11/7/2016.
+ * @author Stephen Well Son 
+ * @version 11/7/2016.
  */
 // Win
 public class Win {
