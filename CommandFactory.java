@@ -16,6 +16,8 @@ public class CommandFactory {
 	public static List<String> ITEM_COMMANDS =
 			Arrays.asList("take","drop","i","eat","drink","break","shake",
 					"touch", "kick");
+	public static List<String> ATTACK_COMMANDS =
+			Arrays.asList("");
 	public static List<String> ROOM_ITEM_COMMANDS =
 			Arrays.asList("");
 	public static List<String> CRAFTING_COMMANDS =

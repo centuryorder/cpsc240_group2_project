@@ -1,16 +1,8 @@
 
 package Group_Project_Bork;
 
-import java.util.Hashtable;
-import java.util.Scanner;
-
-import Group_Project_Bork.Room.NoRoomException;
-import hendrawan_borkv3.Item.NoItemException;
-
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.util.*;
+import java.io.*;
 
 public class Dungeon {
 
@@ -54,7 +46,7 @@ public class Dungeon {
 	 * @throws NoItemException 
 	 */
 	public Dungeon(String filename) throws FileNotFoundException,
-	IllegalDungeonFormatException, NoItemException {this(filename,true);}{
+	IllegalDungeonFormatException, Item.NoItemException {this(filename, true);}{
 /**
 		init();
 		this.filename = filename;
@@ -105,7 +97,7 @@ public class Dungeon {
 	}
 
 	public Dungeon(String filename, boolean initState) throws IllegalDungeonFormatException,
-	FileNotFoundException, NoItemException
+	FileNotFoundException, Item.NoItemException
 	{
 		init();
 		this.initState = initState;
@@ -149,7 +141,8 @@ public class Dungeon {
 				while (true) {
 					add(new Room(s, this, initState));
 				}
-			} catch (Item.NoItemException | NoRoomException e) {  /* end of rooms */ }
+			}
+			catch(Room.NoRoomException e){}
 
 			// Throw away Exits starter.
 			if (!s.nextLine().equals(EXITS_MARKER)) {

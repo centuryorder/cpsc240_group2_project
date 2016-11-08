@@ -1,9 +1,5 @@
-
 package Group_Project_Bork;
-
 import java.util.Scanner;
-
-
 public class Interpreter {
 
     private static GameState state; // not strictly necessary; GameState is 

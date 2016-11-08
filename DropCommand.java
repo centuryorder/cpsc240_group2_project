@@ -1,7 +1,5 @@
 package Group_Project_Bork;
 
-import hendrawan_borkv3.Item.NoItemException;
-
 public class DropCommand extends Command{
 	private String noun;
 	private String verb;

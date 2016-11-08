@@ -1,14 +1,17 @@
-
 package Group_Project_Bork;
-
 import java.util.*;
 
 import hendrawan_borkv3.Item.NoItemException;
 
 import java.io.*;
-
+/**
+ * 
+ * @author Yohan Hendrawan
+ * @version 11/07/2016
+ *
+ */
 public class GameState {
-
+	
 	public static class IllegalSaveFormatException extends Exception {
 		public IllegalSaveFormatException(String e) {
 			super(e);
@@ -26,7 +29,10 @@ public class GameState {
 	private Dungeon dungeon;
 	private Room adventurersCurrentRoom;
 	private ArrayList<Item> inventory = new ArrayList<Item>();;
-
+	/**
+	 * instance is a singleton 
+	 * @return
+	 */
 	static synchronized GameState instance() {
 		if (theInstance == null) {
 			theInstance = new GameState();
@@ -38,7 +44,7 @@ public class GameState {
 	}
 
 	void restore(String filename) throws FileNotFoundException,
-	IllegalSaveFormatException, Dungeon.IllegalDungeonFormatException, NoItemException {
+	IllegalSaveFormatException, Dungeon.IllegalDungeonFormatException, Item.NoItemException {
 
 		Scanner s = new Scanner(new FileReader(filename));
 

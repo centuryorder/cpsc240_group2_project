@@ -1,14 +1,7 @@
-
 package Group_Project_Bork;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import hendrawan_borkv3.GameState.IllegalSaveFormatException;
-import hendrawan_borkv3.Item.NoItemException;
-
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.*;
+import java.io.*;
 
 public class Room {
 
@@ -58,10 +51,10 @@ public class Room {
 	}
 
 	public Room(Scanner s, Dungeon d) throws NoRoomException, 
-	Dungeon.IllegalDungeonFormatException, NoItemException, Item.NoItemException{this(s,d,true);}
+	Dungeon.IllegalDungeonFormatException, Item.NoItemException, Item.NoItemException{this(s,d,true);}
 
 	public Room(Scanner s, Dungeon d, boolean initState) throws NoRoomException,
-	Dungeon.IllegalDungeonFormatException, NoItemException, Item.NoItemException
+	Dungeon.IllegalDungeonFormatException, Item.NoItemException
 	{
 		init();
 		title = s.nextLine();

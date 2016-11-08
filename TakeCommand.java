@@ -1,7 +1,5 @@
 package Group_Project_Bork;
 
-import hendrawan_borkv3.Item.NoItemException;
-
 public class TakeCommand extends Command{
 
 	private String noun;
