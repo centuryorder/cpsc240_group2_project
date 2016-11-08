@@ -1,5 +1,5 @@
 
-package hendrawan_borkv3;
+package Group_Project_Bork;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,10 +58,10 @@ public class Room {
 	}
 
 	public Room(Scanner s, Dungeon d) throws NoRoomException, 
-	Dungeon.IllegalDungeonFormatException, NoItemException{this(s,d,true);}
+	Dungeon.IllegalDungeonFormatException, NoItemException, Item.NoItemException{this(s,d,true);}
 
 	public Room(Scanner s, Dungeon d, boolean initState) throws NoRoomException,
-	Dungeon.IllegalDungeonFormatException, NoItemException
+	Dungeon.IllegalDungeonFormatException, NoItemException, Item.NoItemException
 	{
 		init();
 		title = s.nextLine();
@@ -160,7 +160,7 @@ public class Room {
 		s.nextLine();   // consume end-of-room delimiter
 	}
 
-	void restoreState(Scanner s, Dungeon d) throws IllegalSaveFormatException
+	void restoreState(Scanner s, Dungeon d) throws GameState.IllegalSaveFormatException
 	{
 		String line = s.nextLine();
 		if (!line.startsWith("beenHere")) {

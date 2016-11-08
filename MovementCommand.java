@@ -1,4 +1,4 @@
-package hendrawan_borkv3;
+package Group_Project_Bork;
 
 public class MovementCommand extends Command{
 	private String dir;

@@ -1,9 +1,10 @@
 
-package hendrawan_borkv3;
+package Group_Project_Bork;
 
 import java.util.Hashtable;
 import java.util.Scanner;
 
+import Group_Project_Bork.Room.NoRoomException;
 import hendrawan_borkv3.Item.NoItemException;
 
 import java.io.IOException;
@@ -148,7 +149,7 @@ public class Dungeon {
 				while (true) {
 					add(new Room(s, this, initState));
 				}
-			} catch (Room.NoRoomException e) {  /* end of rooms */ }
+			} catch (Item.NoItemException | NoRoomException e) {  /* end of rooms */ }
 
 			// Throw away Exits starter.
 			if (!s.nextLine().equals(EXITS_MARKER)) {

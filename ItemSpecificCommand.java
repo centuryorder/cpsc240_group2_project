@@ -1,4 +1,4 @@
-package hendrawan_borkv3;
+package Group_Project_Bork;
 
 import hendrawan_borkv3.Item.NoItemException;
 
@@ -50,7 +50,7 @@ public class ItemSpecificCommand extends Command {
 					}
 				}
 			}
-		} catch (NoItemException e) {
+		} catch (Item.NoItemException e) {
 			e.printStackTrace();
 		}
 

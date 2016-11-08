@@ -1,4 +1,4 @@
-package hendrawan_borkv3;
+package Group_Project_Bork;
 
 import hendrawan_borkv3.Item.NoItemException;
 
@@ -24,7 +24,7 @@ public class TakeCommand extends Command{
 					msg = "You take " +noun+".\n";
 				}
 
-			} catch (NoItemException e) {
+			} catch (Item.NoItemException e) {
 				e.printStackTrace();
 			}
 		}
