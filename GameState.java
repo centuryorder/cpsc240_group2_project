@@ -34,6 +34,7 @@ public class GameState {
 	private int HP, Armor, Speed, Capacity, Damage;
 	private Score Score;
 	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
+	private HashMap<String, Item> equipment = new HashMap<String, Item>();
 	private boolean twoHand;
 	private Timer timer;
 	private TimerTask daylight;
@@ -199,6 +200,42 @@ public class GameState {
 	 * @param room take in room
 	 */
 	public void teleportTo(Room room){
+		
+	}
+	/**
+	 *getEuipedName return list of name of equipped name and its type for saving purposes
+	 * @return a list of name of equipped items
+	 */
+	public ArrayList getEquippedName(){
+		ArrayList<Item> equipped = new ArrayList<Item>();
+		return equipped;
+		
+	}
+	/**
+	 * addItemToEquipped add item to the correct equipment slot
+	 * @param item take in item
+	 */
+	public void addItemToEquipped(Item item){
+		
+	}
+	/**
+	 * removeItemFromEquipped remove item from the equipment slot
+	 * @param item
+	 */
+	public void removeItemFromEquipped(Item item){
+		
+	}
+	/**
+	 * changeRoomLighting changes some room lighting using a timer
+	 */
+	void changeRoomLighting(){
+		
+	}
+	/**
+	 * recieveWound take in the damage that is calculated by during combat
+	 * @param wound
+	 */
+	public void reciveWound(Wound wound){
 		
 	}
 }
