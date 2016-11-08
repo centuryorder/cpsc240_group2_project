@@ -1,8 +1,11 @@
-
 package Group_Project_Bork;
-
 import java.util.*;
-
+/**
+ * 
+ * @author Yohan Hendrawan
+ * @version 11/07/2016
+ *
+ */
 public class CommandFactory {
 
 	private static CommandFactory theInstance;
@@ -13,7 +16,14 @@ public class CommandFactory {
 	public static List<String> ITEM_COMMANDS =
 			Arrays.asList("take","drop","i","eat","drink","break","shake",
 					"touch", "kick");
-
+	public static List<String> ROOM_ITEM_COMMANDS =
+			Arrays.asList("");
+	public static List<String> CRAFTING_COMMANDS =
+			Arrays.asList("");
+	/**instance is a singleton CommandFactory class
+	 * 
+	 * @return CommandFactory class if no other instance have been created
+	 */
 	public static synchronized CommandFactory instance() {
 		if (theInstance == null) {
 			theInstance = new CommandFactory();
@@ -23,7 +33,11 @@ public class CommandFactory {
 
 	private CommandFactory() {
 	}
-
+	/**
+	 * parse take in up to four words
+	 * @param command take in a string
+	 * @return a Command class to generate appropriate action
+	 */
 	public Command parse(String command) {
 		String[] c = command.split(" ", 2);
 		String verb= c[0].toLowerCase();
