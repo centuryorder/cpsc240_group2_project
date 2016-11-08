@@ -28,7 +28,18 @@ public class GameState {
 	private static GameState theInstance;
 	private Dungeon dungeon;
 	private Room adventurersCurrentRoom;
-	private ArrayList<Item> inventory = new ArrayList<Item>();;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
+	
+	//Adventurer Status
+	private int HP, Armor, Speed, Capacity, Damage;
+	private Score Score;
+	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
+	private boolean twoHand;
+	private Timer timer;
+	private TimerTask daylight;
+	public Combat currentCombat;
+	
+	
 	/**
 	 * instance is a singleton 
 	 * @return
@@ -182,5 +193,12 @@ public class GameState {
 
 		return temp;
 
+	}
+	/**
+	 * teleportTo used to change the adventurersCurrentRoom during teleportation event
+	 * @param room take in room
+	 */
+	public void teleportTo(Room room){
+		
 	}
 }
