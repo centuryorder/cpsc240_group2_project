@@ -1,3 +1,4 @@
+package Group_Project_Bork;
 /**
  * /**
  * @author Stephen Well Son
@@ -20,6 +21,7 @@ boolean dead = false;
      *@param points takes the points integer.
      * */
     public int getScore(int points, int score){
+		return score;
 
     }
 
@@ -28,6 +30,7 @@ boolean dead = false;
      * @return
      */
     public NPC removeNpc(){
+		return null;
 
     }
 

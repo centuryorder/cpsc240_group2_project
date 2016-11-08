@@ -8,8 +8,8 @@ import java.util.Hashtable;
  */
 
 public class Score {
-int points;
-    private Hashtable<int, String> rank;
+	int points;
+    private Hashtable<Integer, String> rank;
 
     Score (){
 
@@ -31,6 +31,7 @@ int points;
      * @return
      */
     public String getRank(int Score){
+		return null;
 
     }
 
@@ -40,6 +41,7 @@ int points;
  *@param points takes the points integer.
  * */
     public int getScore(int points, int score){
+		return score;
 
     }
 }
