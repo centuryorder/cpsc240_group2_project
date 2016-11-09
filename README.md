@@ -9,7 +9,7 @@ X Combat.java
 
 X CommandFactory.java
 
-CraftingCommand.java
+XCraftingCommand.java
 
 X Die.java
 
