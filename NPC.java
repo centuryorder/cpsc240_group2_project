@@ -11,7 +11,7 @@ public class NPC {
     Hashtable message;
 
     /**
-     * getName takes name as argument and associates it with npc
+     * Takes name as argument and associates it with npc
      * @param name takes in string name
      * @return
      */
@@ -21,7 +21,7 @@ public class NPC {
     }
 
     /**
-     * getHealth uses int health to determine health state of npc
+     * Uses int health to determine health state of npc
      * @param health takes integer health
      * @return health
      */
@@ -31,7 +31,7 @@ public class NPC {
     }
 
     /**
-     * isAlive returns if the NPC is alive or dead and uses health as reference
+     * Returns if the NPC is alive or dead and uses health as reference
      * @param health is taken as an integer.
 
      */
@@ -41,7 +41,7 @@ public class NPC {
     }
 
     /**
-     * isHostile returns boolean that determines whether or not an npc will act aggressively towards the player.
+     * Returns boolean that determines whether or not an npc will act aggressively towards the player.
      * @return false by default
      */
     public boolean isHostile(){

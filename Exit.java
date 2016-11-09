@@ -17,8 +17,10 @@ public class Exit {
         src.addExit(this);
     }
 
-    /** Given a Scanner object positioned at the beginning of an "exit" file
+    /**
+ 	 *  Given a Scanner object positioned at the beginning of an "exit" file
         entry, read and return an Exit object representing it. 
+		@param s scanner to read exit data from
         @param d The dungeon that contains this exit (so that Room objects 
         may be obtained.)
         @throws NoExitException The reader object is not positioned at the
@@ -54,6 +56,10 @@ public class Exit {
     private void init() {
     }
 
+	/**
+	 * Describes the exit path
+	 * @return Text string describing exit
+	 */
     String describe() {
         return "You can go " + dir + " to " + dest.getTitle() + ".";
     }

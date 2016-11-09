@@ -5,7 +5,8 @@ import java.io.*;
 /**
  * 
  * @author Yohan Hendrawan
- * @version 11/07/2016
+ * @author Matthew Aneiro
+ * @version 11/08/2016
  *
  */
 public class GameState {
