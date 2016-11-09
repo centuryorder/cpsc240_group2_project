@@ -13,7 +13,7 @@ X CraftingCommand.java
 
 X Die.java
 
-Dissapear.java
+XDissapear.java
 
 X Dungeon.java
 
