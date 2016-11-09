@@ -2,7 +2,7 @@
 Java files should be Package under: Group_Project_Bork.
 
 Java Files to be done: (Add "X " when done)
-AttackCommand.java
+X AttackCommand.java
 X Combat.java
 X CommandFactory.java
 CraftingCommand.java
@@ -11,9 +11,9 @@ Dissapear.java
 X Dungeon.java
 X GameState.java
 X Item.java
-NPC.java
+X NPC.java
 X Room.java
 RoomSpecificItemCommand.java
 Transform.java
-Win.java
-Wound.java
+X Win.java
+X Wound.java
