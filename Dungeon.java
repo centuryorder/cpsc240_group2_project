@@ -1,4 +1,7 @@
-
+/**
+ * @author Yohan Hendrawan
+ * @version 11/08/16
+ */
 package Group_Project_Bork;
 
 import java.util.*;
@@ -25,11 +28,12 @@ public class Dungeon {
 	static String FILENAME_LEADER = "Dungeon file: ";
 	static String ROOM_STATES_MARKER = "Room states:";
 	static String ROOM_CONTENTS_MARKER = "Contents:";
-
+	// Variable for the Dungeon
 	private String name;
 	private Room entry;
 	private Hashtable<String,Room> rooms;
 	private Hashtable<String,Item> items;
+	private Hashtable<String,NPC> NPC;
 	private String filename;
 	private boolean initState;
 
@@ -221,5 +225,13 @@ public class Dungeon {
 	public boolean getInitState()
 	{
 		return this.initState;
+	}
+	/**
+	 * Add NPC into hashtable for easier placement thourgh out
+	 * the dungeon
+	 * @param NPC take in NPC class
+	 */
+	public void addNPC(NPC NPC){
+		
 	}
 }

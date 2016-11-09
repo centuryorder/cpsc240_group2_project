@@ -8,11 +8,11 @@ X CommandFactory.java
 CraftingCommand.java
 X Die.java
 Dissapear.java
-Dungeon.java
+X Dungeon.java
 X GameState.java
-Item.java
+X Item.java
 NPC.java
-Room.java
+X Room.java
 RoomSpecificItemCommand.java
 Transform.java
 Win.java
