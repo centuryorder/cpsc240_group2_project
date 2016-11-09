@@ -41,7 +41,7 @@ public class GameState {
 	
 	/**
 	 * instance is a singleton 
-	 * @return
+	 * @return GameState
 	 */
 	static synchronized GameState instance() {
 		if (theInstance == null) {
@@ -57,6 +57,10 @@ public class GameState {
 		
 	}
 
+	/**
+	 * Loads the game
+	 * @param filename savefile to load
+	 */
 	void restore(String filename) throws FileNotFoundException,
 	IllegalSaveFormatException, Dungeon.IllegalDungeonFormatException, Item.NoItemException {
 
@@ -102,6 +106,10 @@ public class GameState {
 		store(DEFAULT_SAVE_FILE);
 	}
 
+	/**
+	 * Saves the game state
+	 * @param saveName save file name
+	 */
 	void store(String saveName) throws IOException {
 		String filename = saveName + SAVE_FILE_EXTENSION;
 		PrintWriter w = new PrintWriter(new FileWriter(filename));
@@ -138,10 +146,18 @@ public class GameState {
 		adventurersCurrentRoom = dungeon.getEntry();
 	}
 
+	/**
+	 * gets the room the player is currently in
+	 * @return the current room
+	 */
 	Room getAdventurersCurrentRoom() {
 		return adventurersCurrentRoom;
 	}
 
+	/**
+	 * sets the room the player is in
+	 * @param room room player moves to
+	 */
 	void setAdventurersCurrentRoom(Room room) {
 		adventurersCurrentRoom = room;
 	}
@@ -149,6 +165,11 @@ public class GameState {
 	Dungeon getDungeon() {
 		return dungeon;
 	}
+	
+	/**
+	 * gets names of items in inventory
+	 * @return list of items in inventory
+	 */
 	ArrayList<String> getInventoryNames()
 	{
 		ArrayList<String> InventoryNames = new ArrayList<String>();
@@ -160,11 +181,19 @@ public class GameState {
 
 	}
 
+	/**
+	 * add item to inventory
+	 * @param item item to be added to inventory
+	 */
 	void addToInventory(Item item)
 	{
 		this.inventory.add(item);
 	}
 
+	/**
+	 * removes item from inventory
+	 * @param item item to be removed from inventory
+	 */
 	void removeFromInventory(Item item)
 	{
 		this.inventory.remove(item);
