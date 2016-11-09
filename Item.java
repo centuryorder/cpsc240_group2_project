@@ -2,6 +2,13 @@ package Group_Project_Bork;
 
 import java.util.*;
 
+/**
+ *
+ * @author Matthew Aneiro
+ * @version 11/08/2016
+ *
+ */
+
 public class Item 
 {
 	public static class NoItemException extends Exception {
@@ -13,6 +20,10 @@ public class Item
 	private int weight;
 	private Hashtable<String, String> message;
 
+	/**
+	 * Item constructor
+	 * @param s file reader
+	 */
 	public Item(Scanner s)throws NoItemException
 	{
 		init();
@@ -50,6 +61,12 @@ public class Item
 	{
 		this.message = new Hashtable<String,String>();
 	}
+	
+	/**
+	 * Tests nicknames for items
+	 * @param name item's nickname
+	 * @return boolean
+	 */
 	public boolean goesBy(String name)
 	{
 		boolean n = false;
@@ -58,17 +75,31 @@ public class Item
 		return n;
 	}
 
+	/**
+	 * Gets item's name
+	 * @return item name
+	 */
 	public String getPrimaryName()
 	{
 		return this.primaryName;
 	}
 
+	/**
+	 * Gets text corresponding to specific verb
+	 * @param verb verb acting on object
+	 * @return text message
+	 */
 	public String getMessageForVerb(String verb)
 	{
 		String msg= message.get(verb);
 		return msg;
 
 	}
+	
+	/**
+	 * Gets item's name
+	 * @return item name
+	 */
 	public String toString()
 	{
 		return primaryName;
