@@ -2,7 +2,7 @@ package Group_Project_Bork;
 /**
  * /**
  * @author Stephen Well Son
- * @version 11/8/2016.
+ * @version 11/8/16.
  */
 
 public class Die {

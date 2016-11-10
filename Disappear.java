@@ -2,16 +2,16 @@ package Group_Project_Bork;
 
 /**
  * @author Stephen Well Son
- * @version 11/9/2016.
+ * @version 11/9/16.
  */
-public class Disappear extends Group_Project_Bork.Item {
-    Group_Project_Bork.Item item;
+public class Disappear {
+	Item item;
 
-    /**
-     * Disappear will handle dismissing items from the running instance of the program.
-     * @param item will be implemented
-     */
-    public Disappear(){
-
-    }
+	/**
+	 * Disappear will handle dismissing items from the running instance of the program.
+	 * @param item will be implemented
+	 */
+	public Disappear(Item item){
+		this.item = item;
+	}
 }

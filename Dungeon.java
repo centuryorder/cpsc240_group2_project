@@ -227,7 +227,7 @@ public class Dungeon {
 		return this.initState;
 	}
 	/**
-	 * Add NPC into hashtable for easier placement thourgh out
+	 * Add NPC into hashtable for easier placement throughout
 	 * the dungeon
 	 * @param NPC take in NPC class
 	 */

@@ -1,7 +1,11 @@
 package Group_Project_Bork;
-
 import java.util.Hashtable;
-
+/**
+ * 
+ * @author Yohan Hendrawan
+ * @version 11/07/16
+ *
+ */
 public class Combat {
 	private NPC targetNPC;
 	private int targetSpeed, targerArmor, targetDamage, advSpeed, advArmor, advDamage;

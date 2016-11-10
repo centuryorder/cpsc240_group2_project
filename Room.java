@@ -255,27 +255,27 @@ public class Room {
 	 * @param NPC take in NPC
 	 */
 	void addNPC(NPC NPC){
-		
+
 	}
 	/**
 	 * Remove NPC in the case that it dies or move to another location
 	 * @param NPC take in NPC
 	 */
 	void removeNPC(NPC NPC){
-		
+
 	}
 	/**
 	 * Change the room lighting.
 	 * @param status take in the status
 	 */
 	public void setLight(boolean status){
-		
+
 	}
 	/**
 	 * Use when the trigger event happen to show the room title
 	 * @param status take in the status
 	 */
 	public void setHideName(boolean status){
-		
+
 	}
 }
