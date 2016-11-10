@@ -27,7 +27,7 @@ X Room.java
 
 X RoomSpecificItemCommand.java
 
-Transform.java
+X Transform.java
 
 X Win.java
 
