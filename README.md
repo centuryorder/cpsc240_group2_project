@@ -13,7 +13,7 @@ X CraftingCommand.java
 
 X Die.java
 
-XDissapear.java
+X Dissapear.java
 
 X Dungeon.java
 
@@ -25,7 +25,7 @@ X NPC.java
 
 X Room.java
 
-RoomSpecificItemCommand.java
+X RoomSpecificItemCommand.java
 
 Transform.java
 
