@@ -45,7 +45,7 @@ public class Room {
 		String lineOfDesc = s.nextLine();
 		while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
 				!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
-			desc += lineOfDesc + "\n";
+			desc += "\n" + lineOfDesc;
 			lineOfDesc = s.nextLine();
 		}
 
@@ -89,7 +89,7 @@ public class Room {
 			lineOfDesc =s.nextLine();
 			while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
 					!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
-				desc += lineOfDesc + "\n";
+				desc += "\n"+ lineOfDesc;
 				lineOfDesc = s.nextLine();
 			}
 		}
@@ -97,7 +97,7 @@ public class Room {
 		{
 			while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
 					!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
-				desc += lineOfDesc + "\n";
+				desc += "\n"+ lineOfDesc;
 				lineOfDesc = s.nextLine();
 			}
 		}
@@ -185,12 +185,12 @@ public class Room {
 	public String describe() {
 		String description;
 		if(hideName){
-			description = "??????????"+ "/n";
+			description = "??????????";
 		}
 		else if (beenHere && !hideName) {
 			description = title +"\n";
 		} else {
-			description = title + "\n" + desc;
+			description = title+ desc;
 		}
 		int count=1;
 		for (Item item: items)
