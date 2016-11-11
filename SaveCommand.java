@@ -1,5 +1,10 @@
 package Group_Project_Bork;
-
+/**
+ * Command to save adventurer's current progress
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ *
+ */
 public class SaveCommand extends Command{
 	private String Filename;
 	public SaveCommand(String f) {

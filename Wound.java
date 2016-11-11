@@ -1,9 +1,9 @@
 package Group_Project_Bork;
 /**
- * 
+ * Class that contain damage that affect NPC or adventurer
  * @author Yohan Hendrawan
  * @version 11/08/16
- *
+ * 
  */
 public class Wound {
 	int Damage;

@@ -1,5 +1,10 @@
 package Group_Project_Bork;
-
+/**
+ * Command that drop an item into the adventurer's current room
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ *
+ */
 public class DropCommand extends Command{
 	private String noun;
 	private String verb;

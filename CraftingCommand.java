@@ -1,5 +1,6 @@
 package Group_Project_Bork;
 /**
+ * Command class that activates crafting event
  * @author Stephen Well Son
  * @version 11/9/16.
  */

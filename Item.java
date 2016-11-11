@@ -2,10 +2,9 @@ package Group_Project_Bork;
 import java.util.*;
 
 /**
- *
+ * Object class that hold items properties
  * @author Matthew Aneiro
  * @version 11/08/2016
- *
  */
 
 public class Item 

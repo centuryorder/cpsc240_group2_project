@@ -1,12 +1,11 @@
+package Group_Project_Bork;
+import java.util.*;
+import java.io.*;
 /**
+ * Class that contain all the rooms, items, and NPC in the game
  * @author Yohan Hendrawan
  * @version 11/08/16
  */
-package Group_Project_Bork;
-
-import java.util.*;
-import java.io.*;
-
 public class Dungeon {
 
 	public static class IllegalDungeonFormatException extends Exception {

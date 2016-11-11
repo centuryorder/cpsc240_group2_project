@@ -1,7 +1,12 @@
 package Group_Project_Bork;
 
 import java.util.Scanner;
-
+/**
+ * Object class that store exit information for rooms
+ * @author Yohan hendrawan
+ * @version BorkV3
+ *
+ */
 public class Exit {
 
     class NoExitException extends Exception {}

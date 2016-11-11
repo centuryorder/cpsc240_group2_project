@@ -1,6 +1,7 @@
 package Group_Project_Bork;
 
 /**
+ * Command class that activates Room Item Interaction event
  * @author Stephen Well Son
  * @version 11/9/2016.
  */

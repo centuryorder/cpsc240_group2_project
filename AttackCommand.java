@@ -1,9 +1,8 @@
 package Group_Project_Bork;
 /**
- * 
+ * Command class that activates combat event
  * @author Yohan Hendrawan
  * @Version 11/09/16
- *
  */
 public class AttackCommand extends Command{
 	String Noun;

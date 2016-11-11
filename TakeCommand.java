@@ -1,5 +1,9 @@
 package Group_Project_Bork;
-
+/**
+ * Command that take item from adventurer's current room and put it into the inventory
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ */
 public class TakeCommand extends Command{
 
 	private String noun;

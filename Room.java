@@ -1,8 +1,11 @@
 package Group_Project_Bork;
-
 import java.util.*;
 import java.io.*;
-
+/**
+ * Object class used to hold room properties
+ * @author Yohan Hendrawan
+ * @version 11/09/16
+ */
 public class Room {
 
 	class NoRoomException extends Exception {}
@@ -94,10 +97,7 @@ public class Room {
 		{
 			while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
 					!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
-				if(!s.nextLine().equals(Dungeon.SECOND_LEVEL_DELIM))
-					desc += lineOfDesc + "\n";
-				else
-					desc +=lineOfDesc;
+				desc += lineOfDesc + "\n";
 				lineOfDesc = s.nextLine();
 			}
 		}

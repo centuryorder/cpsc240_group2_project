@@ -1,7 +1,11 @@
 package Group_Project_Bork;
 
 import java.util.Hashtable;
-
+/**
+ * Object class that hold the Non Player Character properties
+ * @author Yohan Hendrawan
+ * @version 11/09/16 
+ */
 public class NPC {
     String name;
     int health;

@@ -3,6 +3,7 @@ package Group_Project_Bork;
 import java.util.Hashtable;
 
 /**
+ * Class that is used to keep track of score and hold a set of ranking titles
  * @author Stephen Well Son
  * @version 11/8/16.
  */

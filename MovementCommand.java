@@ -1,5 +1,9 @@
 package Group_Project_Bork;
-
+/**
+ * Command that control movement of adventurer in the dungeon
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ */
 public class MovementCommand extends Command{
 	private String dir;
 	MovementCommand(String dir) {

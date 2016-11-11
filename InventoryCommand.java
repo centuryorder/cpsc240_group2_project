@@ -1,7 +1,10 @@
 package Group_Project_Bork;
-
 import java.util.ArrayList;
-
+/**
+ * Command that that display the current item in adventurer's inventory
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ */
 public class InventoryCommand extends Command{
 	private String verb;
 	public InventoryCommand(String verb)

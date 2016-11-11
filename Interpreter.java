@@ -1,5 +1,10 @@
 package Group_Project_Bork;
 import java.util.Scanner;
+/**
+ * Interpreter class that interact with user
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ */
 public class Interpreter {
 
     private static GameState state; // not strictly necessary; GameState is 

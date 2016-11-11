@@ -1,8 +1,9 @@
 package Group_Project_Bork;
 /**
- * /**
+ * Triggers the end game event if adventurer dies.
  * @author Stephen Well Son
  * @version 11/8/16.
+ * Class that kill off NPC or adventurer.
  */
 
 public class Die {

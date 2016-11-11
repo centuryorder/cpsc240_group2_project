@@ -1,6 +1,7 @@
 package Group_Project_Bork;
 
 /**
+ * Class that erases item from the dungeon
  * @author Stephen Well Son
  * @version 11/9/16.
  */

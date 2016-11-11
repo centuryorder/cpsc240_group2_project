@@ -3,6 +3,7 @@ package Group_Project_Bork;
 import java.util.Scanner;
 
 /**
+ * Class that transform items into another one
  * @author Stephen Well Son
  * @version 11/9/2016.
  */

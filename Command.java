@@ -1,6 +1,11 @@
 
 package Group_Project_Bork;
-
+/**
+ * Abtract class for the other command classes
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ *
+ */
 // For now, only direction commands. If the "direction" is bogus, then this
 // effectively doubles as an UnknownCommand (to be a subclass later).
 public abstract class Command {

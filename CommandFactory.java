@@ -1,10 +1,9 @@
 package Group_Project_Bork;
 import java.util.*;
 /**
- * 
+ * Class that parses user's input and generate the appropriate command
  * @author Yohan Hendrawan
  * @version 11/07/16
- *
  */
 public class CommandFactory {
 

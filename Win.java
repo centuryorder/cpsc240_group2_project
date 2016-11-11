@@ -1,5 +1,6 @@
 package Group_Project_Bork;
 /**
+ * Class that trigger the win event
  * @author Stephen Well Son 
  * @version 11/7/16.
  */

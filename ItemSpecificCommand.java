@@ -1,5 +1,9 @@
 package Group_Project_Bork;
-
+/**
+ * Command that execute specific item related event
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ */
 public class ItemSpecificCommand extends Command {
 	private String verb;
 	private String noun;

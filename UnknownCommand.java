@@ -1,5 +1,10 @@
 package Group_Project_Bork;
-
+/**
+ * Command when user enter unknown command
+ * @author Yohan Hendrawan
+ * @version BorkV3
+ *
+ */
 public class UnknownCommand extends Command {
 
 	private String bogusCommand;
