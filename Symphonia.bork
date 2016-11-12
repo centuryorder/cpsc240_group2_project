@@ -33,11 +33,12 @@ You are inside what look like a temple.
 You see a circular platform with unknown engraving on one end of the temple.
 You see strage glowing crystals on the wall lighting the temple.
 There are six ornate marble pillars holding up the ceiling.
-There is an altar with two lit candels. A door way is wide open to the north.
+There is an altar with two lit candels.
+A door way is wide open to the north.
 ---
 Crystal Cave
 You entered a giant cave. You can hear the sound of water echoing from a tunnel to
-the north. You see a temple inside the cave to the south.You see strange glowing
+the north. You see a temple inside the cave to the south. You see strange glowing
 crystals lighting the path to the temple.
 ---
 Behind Waterfall
@@ -56,12 +57,23 @@ You can see a village in the horizon. You see a path going down to the lake at t
 bottom of the cliff. You see a forest with a tower in the middle. There is a path
 running beside the river.
 ---
-Forest
-You are surrounded by tree. You hear birds cripping.
+Southern Forest
+You are surrounded by tree. You hear birds chirping.
+---
+Eastern Forest
+You are surrounded by tree. You hear birds chirping.
+---
+Northern Forest
+You are surrounded by tree. You hear birds chirping.
+---
+Western Forest
+You are surrounded by tree. You hear birds chirping.
+There is a cliff wall with what seems to be a cave opening.
+The cave opening is unreachable from here.
 ---
 Tower Entrance
 You see a tower that seems to reach pass the sky. There is a door with ornate strange
-symbols. There is a cirular indentation at the middle of the door with a strange
+symbols. There is a circular indentation at the middle of the door with a strange
 symbol.
 ---
 ===
@@ -92,18 +104,54 @@ Cliff
 ---
 Lake
 n
-Forest
+Southern Forest
 ---
 Cliff
 d
 Lake
 ---
-Forest
+Southern Forest
 s
 Lake
 ---
-Forest
+Southern Forest
 n
 Tower Entrance
+---
+Southern Forest
+e
+Eastern Forest
+---
+Southern Forest
+w
+Western Forest
+---
+Tower Entrance
+s
+Southern Forest
+---
+Eastern Forest
+s
+Southern Forest
+---
+Western Forest
+s
+Southern Forest
+---
+Eastern Forest
+n
+Northern Forest
+---
+Western Forest
+n
+Northern Forest
+---
+Northern Forest
+e
+Eastern Forest
+---
+Northern Forest
+w
+Western Forest
 ---
 ===
