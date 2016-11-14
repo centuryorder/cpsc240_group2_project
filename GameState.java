@@ -1,6 +1,8 @@
 package Group_Project_Bork;
 import java.util.*;
 
+import Group_Project_Bork.Dungeon.IllegalDungeonFormatException;
+
 import java.io.*;
 /**
  * Class that keep track the status of the game and adventurer
@@ -36,7 +38,8 @@ public class GameState {
 	private boolean twoHand;
 	private Timer timer;
 	private TimerTask daylight;
-	public Combat currentCombat;
+	private Combat currentCombat;
+	private ArrayList<Wound> wound= new ArrayList<Wound>();
 	
 	
 	/**
@@ -60,9 +63,10 @@ public class GameState {
 	/**
 	 * Loads the game
 	 * @param filename savefile to load
+	 * @throws IllegalDungeonFormatException 
 	 */
 	void restore(String filename) throws FileNotFoundException,
-	IllegalSaveFormatException, Dungeon.IllegalDungeonFormatException, Item.NoItemException {
+	IllegalSaveFormatException, Item.NoItemException, IllegalDungeonFormatException {
 
 		Scanner s = new Scanner(new FileReader(filename));
 

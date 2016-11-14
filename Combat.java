@@ -10,7 +10,11 @@ public class Combat {
 	private int targetSpeed, targerArmor, targetDamage, advSpeed, advArmor, advDamage;
 	private Hashtable<String, String> battleMessage;
 	private static Combat theInstance;
-
+	
+	public Combat()
+	{
+		instance();
+	}
 	/**
 	 * A singleton Combat instance
 	 * @return an instance of Combat if there is none exist

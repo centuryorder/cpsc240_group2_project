@@ -17,6 +17,7 @@ public class Item
 	private String primaryName;
 	private int weight;
 	private Hashtable<String, String> message;
+	private ArrayList<Wound> wound;
 
 	/**
 	 * Item constructor
@@ -58,6 +59,7 @@ public class Item
 	void init()
 	{
 		this.message = new Hashtable<String,String>();
+		this.wound = new ArrayList<Wound>();
 	}
 	
 	/**

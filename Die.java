@@ -8,7 +8,10 @@ package Group_Project_Bork;
 
 public class Die {
 boolean dead = false;
-
+	public Die()
+	{
+		
+	}
     /**
      * Die simply returns whether dead is true or not
      * @param dead
