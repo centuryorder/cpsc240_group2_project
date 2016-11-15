@@ -188,9 +188,19 @@ public class Room {
 			description = "??????????";
 		}
 		else if (beenHere && !hideName) {
-			description = title +"\n";
+			if (title.contains("Forest"))
+			{
+				description = "Forest"+"\n";
+			}
+			else
+				description = title +"\n";
 		} else {
-			description = title+ desc;
+			if (title.contains("Forest"))
+			{
+				description = "Forest"+ desc;
+			}
+			else
+				description = title + desc;
 		}
 		int count=1;
 		for (Item item: items)

@@ -6,14 +6,16 @@ package Group_Project_Bork;
  * 
  */
 public class Wound {
-	int Damage;
+	private int Damage;
+	private String item, npc;
 	/**
 	 * Wound take item event damage and apply to adventurer.
 	 * Healing by item is show as negative damage.
 	 * @param damage
 	 */
-	public Wound(int damage){
+	public Wound(int damage, Item item){
 		this.Damage = damage;
+		this.item = item.getPrimaryName();
 	}
 	/**
 	 * Wound take calculated damage from Combat class and apply to NPC.
@@ -23,6 +25,7 @@ public class Wound {
 	 */
 	public Wound(int damage, NPC target){
 		this.Damage = damage;
+		this.npc = target.getName();
 	}
 	/**
 	 * Wound take calculated damage from Combat class or healing by NPC.

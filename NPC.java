@@ -7,21 +7,32 @@ import java.util.Hashtable;
  * @version 11/09/16 
  */
 public class NPC {
-    String name;
-    int health;
-    int armor;
-    boolean hostile = false;
-    boolean boss = false;
-    Hashtable message;
-
+    private String name;
+    private int health;
+    private int armor;
+    private boolean hostile = false;
+    private boolean boss = false;
+    private  Hashtable<String,String> message = new Hashtable<String,String>();
+    
+    public NPC(String name, int health, int armor, boolean hostile, boolean boss)
+    {
+    	this.name = name;
+    	this.health = health;
+    	this.armor = armor;
+    	this.hostile = hostile;
+    	this.boss = boss;
+    }
     /**
      * Takes name as argument and associates it with npc
      * @param name takes in string name
      * @return
      */
-    public String getName(String name){
+    public void setName(String name){
         this.name = name;
-        return name;
+    }
+    public String getName()
+    {
+    	return this.name;
     }
 
     /**
@@ -29,9 +40,8 @@ public class NPC {
      * @param health takes integer health
      * @return health
      */
-    public int getHealth(int health){
+    public void setHealth(int health){
         this.health = health;
-        return health;
     }
 
     /**
@@ -40,8 +50,10 @@ public class NPC {
 
      */
     public boolean isAlive(int health){
-
-        return true;
+    	if(health > 0)
+    		return true;
+    	else
+    		return false;
     }
 
     /**
@@ -49,6 +61,16 @@ public class NPC {
      * @return false by default
      */
     public boolean isHostile(){
-        return false;
+        return hostile;
+    }
+    
+    public void addMessage(String command, String message)
+    {
+    	this.message.put(command, message);
+    }
+    
+    public String toString()
+    {
+    	return name;
     }
 }

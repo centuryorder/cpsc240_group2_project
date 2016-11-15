@@ -18,6 +18,7 @@ public class Item
 	private int weight;
 	private Hashtable<String, String> message;
 	private ArrayList<Wound> wound;
+	private ArrayList<Transform> transform;
 
 	/**
 	 * Item constructor
@@ -60,6 +61,7 @@ public class Item
 	{
 		this.message = new Hashtable<String,String>();
 		this.wound = new ArrayList<Wound>();
+		this.transform = new ArrayList<Transform>();
 	}
 	
 	/**
@@ -103,5 +105,31 @@ public class Item
 	public String toString()
 	{
 		return primaryName;
+	}
+	
+	public Wound getWound()
+	{
+		for(int i =0; i<wound.size(); i++)
+			if(wound.get(i) != null)
+				return wound.get(i);
+		return null;
+	}
+	
+	public void setWound(Wound w)
+	{
+		this.wound.add(w);
+	}
+	
+	public Transform getTransform()
+	{
+		for(int i =0; i<transform.size(); i++)
+			if(transform.get(i) != null)
+				return transform.get(i);
+		return null;
+	}
+	
+	public void setTransform(Transform t)
+	{
+		this.transform.add(t);
 	}
 }

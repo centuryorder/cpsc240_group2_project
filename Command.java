@@ -10,16 +10,16 @@ package Group_Project_Bork;
 // effectively doubles as an UnknownCommand (to be a subclass later).
 public abstract class Command {
 
-    private String dir;     // for now, this class is only for direction 
-                            // commands.
-    /**
+	private String dir;     // for now, this class is only for direction 
+	// commands.
+	/**
     Command(String dir) {
         this.dir = dir;
     }*/
 
-    public abstract String execute(); /**
+	public abstract String execute(); /**
     {
-    	
+
         if (dir.equals("save")) {
             try {
                 GameState.instance().store();
