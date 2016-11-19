@@ -34,6 +34,29 @@ public class ItemSpecificCommand extends Command {
 				action = tempV.getActionForVerb(verb);
 				noun = tempV.getMessageForVerb(verb);
 			}
+			else
+				{
+					return "you don't see any " +noun+" here";
+				}
+
+				if(action !=null){
+				switch (action)
+				{
+					case "false":
+						return noun;
+					case "disappear":
+						GameState.instance().removeFromInventory(tempI);
+						GameState.instance().getAdventurersCurrentRoom().remove(tempV);
+						return noun;
+					default:
+						GameState.instance().removeFromInventory(tempI);
+						GameState.instance().getAdventurersCurrentRoom().remove(tempV);
+						GameState.instance().addToInventory(GameState.instance().getDungeon().getItem(action));
+						return noun;
+				}
+				}
+
+
 
 		} catch (Item.NoItemException e) {
 			e.printStackTrace();
