@@ -214,6 +214,13 @@ public class Room {
 		//for (Exit exit : exits) {
 		//	description += "\n" + exit.describe();
 		//}
+		/**
+		 * makes score
+		 */
+		if(!beenHere)
+		{
+			GameState.instance().modScore(10);
+		}
 		beenHere = true;
 		return description;
 	}
