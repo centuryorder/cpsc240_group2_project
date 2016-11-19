@@ -4,17 +4,17 @@ Bork v3.0
 Items:
 DrPepper
 10
-kick:The can skitters down the hallway.
-shake:A liquid fizzes menacingly inside the can.
-drink:Gulp, gulp -- that was GOOD!  *belch*
+kick:The can skitters down the hallway.:disappear
+shake:A liquid fizzes menacingly inside the can.:false
+drink:Gulp, gulp -- that was GOOD!  *belch*:EmptyCan
 ---
 magicWand
 5
 ---
 StarWarsToy
 5
-touch:Yoda says, "Do, or do not! There is no try."
-break:Whoops!
+touch:Yoda says, "Do, or do not! There is no try.":false
+break:Whoops!:disappear
 ---
 chainsaw
 35
@@ -24,7 +24,7 @@ WawaTravelMug
 ---
 donut
 7
-eat:You feel mildly guilt-ridden.
+eat:You feel mildly guilt-ridden.:disappear
 ---
 ===
 Rooms:

@@ -17,6 +17,7 @@ public class Item
 	private String primaryName;
 	private int weight;
 	private Hashtable<String, String> message;
+	private Hashtable<String, String> action;
 	private ArrayList<Wound> wound;
 	private ArrayList<Transform> transform;
 
@@ -42,13 +43,16 @@ public class Item
 			
 			String verb;
 			String noun;
+			String action;
 			while((!line.equals(Dungeon.SECOND_LEVEL_DELIM) && !line.equals(Dungeon.TOP_LEVEL_DELIM))
 					&&(!msg.equals(Dungeon.SECOND_LEVEL_DELIM) && !msg.equals(Dungeon.TOP_LEVEL_DELIM)))
 			{
 				m = msg.split(":");
 				verb = m[0].trim();
 				noun = m[1].trim();
+				action = m[2].trim();
 				message.put(verb,noun);
+				this.action.put(verb,action);
 				msg =s.nextLine();
 			}
 			}
@@ -60,6 +64,7 @@ public class Item
 	void init()
 	{
 		this.message = new Hashtable<String,String>();
+		this.action = new Hashtable<String, String>();
 		this.wound = new ArrayList<Wound>();
 		this.transform = new ArrayList<Transform>();
 	}
@@ -96,6 +101,17 @@ public class Item
 		String msg= message.get(verb);
 		return msg;
 
+	}
+
+	/**
+	 * Gets text corresponding to action related to item
+	 * @param verb action on object
+	 * @return
+	 */
+	public String getActionForVerb(String verb)
+	{
+		String act= action.get(verb);
+		return act;
 	}
 	
 	/**
