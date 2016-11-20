@@ -6,7 +6,7 @@ import java.util.*;
  * @version 11/07/16
  */
 public class CommandFactory {
-
+// TODO add rank command
 	private static CommandFactory theInstance;
 	public static List<String> MOVEMENT_COMMANDS = 
 			Arrays.asList("n","w","e","s","u","d" );

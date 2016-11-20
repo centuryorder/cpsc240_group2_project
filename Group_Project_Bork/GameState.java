@@ -32,7 +32,7 @@ public class GameState {
 	
 	//Adventurer Status
 	private int HP, Armor, Speed, Capacity, Damage;
-	private Score Score;
+	private int Score = 0;
 	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
 	private HashMap<String, Item> equipment = new HashMap<String, Item>();
 	private boolean twoHand;
@@ -274,5 +274,32 @@ public class GameState {
 	 */
 	public void reciveWound(Wound wound){
 		
+	}
+	public void modScore(int delta){
+		Score = Score + delta;
+
+	}
+	public int getScore(){
+		return Score;
+
+	}
+
+	public String getRank()
+	{
+		String[] ranks= { "SpaceCadet", "Smelly Willy", "Donald Trump"};
+		if (Score> 100)
+		{
+			return ranks[2];
+
+		}
+		else if(Score> 50)
+		{
+			return ranks[1];
+
+		}
+		else return ranks[0];
+
+
+
 	}
 }
