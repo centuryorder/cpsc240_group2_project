@@ -1,5 +1,10 @@
 package Group_Project_Bork;
-
+/**
+ * 
+ * @author Yohan Hendrawan
+ * @version 11/21/16
+ *
+ */
 public class HealthCommand extends Command{
 	public String execute()
 	{
