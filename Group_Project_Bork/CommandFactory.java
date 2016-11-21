@@ -59,6 +59,8 @@ public class CommandFactory {
 		else if (STATUS_COMMANDS.contains(verb)){
 			if(verb.equals("score"))
 				return new ScoreCommand();
+			else if(verb.equals("health"))
+				return new HealthCommand();
 			else
 				return new UnknownCommand(verb);
 		}
