@@ -119,7 +119,7 @@ public class Dungeon {
 		// Throw away Items starter.
 		if (!s.nextLine().equals(ITEMS_MARKER)) {
 			throw new IllegalDungeonFormatException("No '" +
-					ROOMS_MARKER + "' line where expected.");
+					ITEMS_MARKER + "' line where expected.");
 		}
 			try{
 				while(true){
@@ -127,7 +127,7 @@ public class Dungeon {
 				}
 			}
 			catch(Item.NoItemException e){}
-			
+			//String line = s.nextLine();
 			// Throw away Rooms starter.
 			if (!s.nextLine().equals(ROOMS_MARKER)) {
 				throw new IllegalDungeonFormatException("No '" +

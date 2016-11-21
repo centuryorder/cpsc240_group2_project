@@ -32,9 +32,9 @@ public class Item
 	{
 		init();
 		this.primaryName = s.nextLine();
-		String line =s.nextLine();
 		if(!primaryName.equals(Dungeon.TOP_LEVEL_DELIM))
 		{
+			String line =s.nextLine();
 			if (!line.equals(Dungeon.SECOND_LEVEL_DELIM))
 			{
 				this.weight = Integer.parseInt(line);
@@ -45,9 +45,11 @@ public class Item
 				String[] m;
 				String verb;
 				String noun;
-				String[] event;
+				String[] events;
 				int start;
 				int end;
+				int value;
+				String item;
 				StringBuffer v;
 				while((!line.equals(Dungeon.SECOND_LEVEL_DELIM) && !line.equals(Dungeon.TOP_LEVEL_DELIM))
 						&&(!msg.equals(Dungeon.SECOND_LEVEL_DELIM) && !msg.equals(Dungeon.TOP_LEVEL_DELIM)))
@@ -58,9 +60,44 @@ public class Item
 					{
 						start = verb.indexOf("[");
 						end = verb.indexOf("]");
-						event = verb.substring(start+1, end).split(",");
+						events = verb.substring(start+1, end).split(",");
+						
 						v = new StringBuffer(verb);
 						verb = v.replace(start, end+1, "").toString();
+						for(String i: events)
+						{
+							int st =0;
+							int en =0;
+							if(i.contains("Wound"))
+							{
+								st = i.indexOf("(");
+								en = i.indexOf(")");
+								value = Integer.parseInt(i.substring(st+1,en));
+								this.wound.put(verb, new Wound(value));
+							}
+							else if(i.contains("Score"))
+							{
+								st = i.indexOf("(");
+								en = i.indexOf(")");
+								value = Integer.parseInt(i.substring(st+1,en));
+								this.score.put(verb, new Score(value));
+							}
+							else if(i.contains("Transform"))
+							{
+								st = i.indexOf("(");
+								en = i.indexOf(")");
+								item = i.substring(st+1,en);
+								this.transform.put(verb, new Transform(item,this.primaryName));
+							}
+							else if(i.contains("Die"))
+							{
+								this.die.put(verb, new Die());
+							}
+							else if(i.contains("Win"))
+							{
+								this.win.put(verb, new Win());
+							}
+						}
 					}
 					noun = m[1].trim();
 					message.put(verb,noun);
@@ -78,6 +115,8 @@ public class Item
 		this.wound = new Hashtable<String,Wound>();
 		this.score = new Hashtable<String,Score>();
 		this.transform = new Hashtable<String,Transform>();
+		this.win = new Hashtable<String,Win>();
+		this.die = new Hashtable<String,Die>();
 	}
 
 	/**
@@ -124,6 +163,14 @@ public class Item
 	void getTranform(String verb)
 	{
 		transform.get(verb).execute();
+	}
+	void getWin(String verb)
+	{
+		win.get(verb).execute();
+	}
+	void getDie(String verb)
+	{
+		die.get(verb).execute();
 	}
 	
 	/**

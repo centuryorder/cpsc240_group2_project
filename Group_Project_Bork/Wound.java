@@ -14,9 +14,8 @@ public class Wound extends Event{
 	 * Healing by item is show as negative damage.
 	 * @param damage
 	 */
-	public Wound(int damage, Item item){
+	public Wound(int damage){
 		this.Damage = damage;
-		this.item = item;
 	}
 	/**
 	 * Wound take calculated damage from Combat class and apply to NPC.
