@@ -29,7 +29,7 @@ public class Room {
         @throws NoRoomException The reader object is not positioned at the
         start of a room entry. A side effect of this is the reader's cursor
         is now positioned one line past where it was.
-        @throws Dungeon.IllegalDungeonFormatException A structural problem with the
+        @throws IllegalDungeonFormatException A structural problem with the
         dungeon file itself, detected when trying to read this room.
 	 */
 	Room(Scanner s) throws NoRoomException,
@@ -214,13 +214,6 @@ public class Room {
 		//for (Exit exit : exits) {
 		//	description += "\n" + exit.describe();
 		//}
-		/**
-		 * makes score
-		 */
-		if(!beenHere)
-		{
-			GameState.instance().modScore(10);
-		}
 		beenHere = true;
 		return description;
 	}

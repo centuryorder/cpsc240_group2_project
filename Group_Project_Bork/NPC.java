@@ -63,12 +63,16 @@ public class NPC {
     public boolean isHostile(){
         return hostile;
     }
-    
+
     public void addMessage(String command, String message)
     {
     	this.message.put(command, message);
     }
     
+    public void recieveWound(Wound wound)
+    {
+    	
+    }
     public String toString()
     {
     	return name;

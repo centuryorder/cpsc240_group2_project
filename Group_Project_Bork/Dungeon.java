@@ -231,6 +231,6 @@ public class Dungeon {
 	 * @param NPC take in NPC class
 	 */
 	public void addNPC(NPC NPC){
-		
+		this.NPC.put(NPC.getName(), NPC);
 	}
 }

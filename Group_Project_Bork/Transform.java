@@ -7,10 +7,11 @@ import java.util.Scanner;
  * @author Stephen Well Son
  * @version 11/9/2016.
  */
-public class Transform{
+public class Transform extends Event{
 
 	Item olditem;
 	Item newitem;
+	
 	/**
 	 * setNewItem takes item as a parameter to determine what the new item will be.
 	 * @param item
@@ -38,5 +39,10 @@ public class Transform{
 	public Item Transform(){
 		return newitem;
 
+	}
+	
+	public void execute() {
+		
+		
 	}
 }

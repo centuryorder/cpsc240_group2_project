@@ -7,14 +7,11 @@ package Group_Project_Bork;
 public class ItemSpecificCommand extends Command {
 	private String verb;
 	private String noun;
-	private String action;
-
 
 	public ItemSpecificCommand(String verb, String noun)
 	{
 		this.verb = verb;
 		this.noun = noun;
-
 	}
 
 	public String execute()
@@ -24,40 +21,37 @@ public class ItemSpecificCommand extends Command {
 		try {
 			tempI = GameState.instance().getItemFromInventoryNamed(noun);
 			Item tempV= GameState.instance().getItemInVicinityNamed(noun);
-			if (tempI != null)
+			if (verb.equals("eat")|| verb.equals("drink")|| verb.equals("break"))
 			{
-				action= tempI.getActionForVerb(verb);
-				noun = tempI.getMessageForVerb(verb);
+				if(tempV != null)
+				{
+					msg = tempV.getMessageForVerb(verb);
+					GameState.instance().getAdventurersCurrentRoom().remove(tempV);
+				}
+				else if(tempI != null)
+				{
+					msg = tempI.getMessageForVerb(verb);
+					GameState.instance().removeFromInventory(tempI);
+				}
 			}
-			else if (tempV !=null)
+			if(verb.equals("shake")||verb.equals("kick")|| verb.equals("touch"))
 			{
-				action = tempV.getActionForVerb(verb);
-				noun = tempV.getMessageForVerb(verb);
+				if(tempV != null)
+				{
+					msg = tempV.getMessageForVerb(verb);
+					
+				}
+				else if(tempI != null)
+				{
+					
+					msg = tempI.getMessageForVerb(verb);
+					if(verb.equals("kick"))
+					{
+						GameState.instance().removeFromInventory(tempI);
+						GameState.instance().getAdventurersCurrentRoom().add(tempI);
+					}
+				}
 			}
-			else
-				{
-					return "you don't see any " +noun+" here";
-				}
-
-				if(action !=null){
-				switch (action)
-				{
-					case "false":
-						return noun;
-					case "disappear":
-						GameState.instance().removeFromInventory(tempI);
-						GameState.instance().getAdventurersCurrentRoom().remove(tempV);
-						return noun;
-					default:
-						GameState.instance().removeFromInventory(tempI);
-						GameState.instance().getAdventurersCurrentRoom().remove(tempV);
-						GameState.instance().addToInventory(GameState.instance().getDungeon().getItem(action));
-						return noun;
-				}
-				}
-
-
-
 		} catch (Item.NoItemException e) {
 			e.printStackTrace();
 		}

@@ -5,44 +5,29 @@ import java.util.Hashtable;
 /**
  * Class that is used to keep track of score and hold a set of ranking titles
  * @author Stephen Well Son
- * @version 11/8/16.
+ * @author Yohan Hendrawan
+ * @version 11/21/16.
  */
-
-public class Score {
-	int points;
-	private Hashtable<Integer, String> rank;
-
-	Score (){
-
-	}
-
+public class Score extends Event{
+	private int score;
+	
 	/**
-	 * setRank takes points to calculate a rank.
-	 * @param rank takes the Hashtable rank.
-	 * @param points takes the points integer.
+	 * Constructor to take in score from .bork file
+	 * @param score
 	 */
-	public Hashtable setRank(int points, Hashtable rank){
-		this.rank = rank;
-		return rank;
-	}
-
+	public Score (int score){ this.score = score;}
+	
 	/**
-	 * getRank takes in Score to get the rank.
-	 * @param Score takes the Score int.
-	 * @return
+	 * Return the score contain in the score class
+	 * @return score
 	 */
-	public String getRank(int Score){
-		return null;
-
+	public int getScore()
+	{
+		return this.score;
 	}
-
-	/**
-	 * getScore takes the points integer to calculate the score.
-	 * and also returns the score
-	 * @param points takes the points integer.
-	 * */
-	public int getScore(int points, int score){
-		return score;
-
+	
+	public void execute() {
+		GameState.instance().recieveScore(this);
 	}
+	
 }

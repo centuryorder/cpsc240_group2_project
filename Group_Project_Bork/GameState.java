@@ -8,7 +8,7 @@ import java.io.*;
  * Class that keep track the status of the game and adventurer
  * @author Yohan Hendrawan
  * @author Matthew Aneiro
- * @version 11/08/2016
+ * @version 11/21/2016
  */
 public class GameState {
 	
@@ -32,15 +32,15 @@ public class GameState {
 	
 	//Adventurer Status
 	private int HP, Armor, Speed, Capacity, Damage;
-	private int Score = 0;
+	private int Score;
 	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
 	private HashMap<String, Item> equipment = new HashMap<String, Item>();
 	private boolean twoHand;
 	private Timer timer;
 	private TimerTask daylight;
 	private Combat currentCombat;
-	private ArrayList<Wound> wound= new ArrayList<Wound>();
-	
+	private ArrayList<Wound> wound= new ArrayList<Wound>();	
+	private Hashtable<Integer,String> Rank = new Hashtable<Integer, String>();
 	
 	/**
 	 * instance is a singleton 
@@ -235,7 +235,7 @@ public class GameState {
 	 * @param room take in room
 	 */
 	public void teleportTo(Room room){
-		
+		this.adventurersCurrentRoom = room;
 	}
 	/**
 	 *getEuipedName return list of name of equipped name and its type for saving purposes
@@ -272,34 +272,47 @@ public class GameState {
 	 * Take in the damage that is calculated by during combat
 	 * @param wound take in wound
 	 */
-	public void reciveWound(Wound wound){
-		
+	public void recieveWound(Wound wound){
+		this.HP -= wound.getDamage();
+		if (this.HP >100)
+			this.HP = 100;
+		else if(this.HP <= 0)
+			new Die().execute();
 	}
-	public void modScore(int delta){
-		Score = Score + delta;
-
+	
+	public void recieveScore(Score score){
+		this.Score += score.getScore();
 	}
-	public int getScore(){
-		return Score;
-
+	
+	public void addRank(int tier,String Rank)
+	{
+		this.Rank.put(tier, Rank);
 	}
-
+	
 	public String getRank()
 	{
-		String[] ranks= { "SpaceCadet", "Smelly Willy", "Donald Trump"};
-		if (Score> 100)
+		if (this.Score > 0 && this.Score <= 100)
 		{
-			return ranks[2];
-
+			return this.Rank.get(1);
 		}
-		else if(Score> 50)
+		else if (this.Score >100 && this.Score <= 300)
 		{
-			return ranks[1];
-
+			return this.Rank.get(2);
 		}
-		else return ranks[0];
-
-
-
+		else if (this.Score > 300 && this.Score <= 900)
+		{
+			return this.Rank.get(3);
+		}
+		else if( this.Score >900)
+		{
+			return this.Rank.get(4);
+		}
+		else
+			return "No Body.";
+	}
+	
+	public int getScore()
+	{
+		return this.Score;
 	}
 }

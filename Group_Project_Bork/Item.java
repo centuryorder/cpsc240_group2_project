@@ -4,22 +4,25 @@ import java.util.*;
 /**
  * Object class that hold items properties
  * @author Matthew Aneiro
- * @version 11/08/2016
+ * @author Yohan Hendrawan
+ * @version 11/21/2016
  */
 
 public class Item 
 {
 	public static class NoItemException extends Exception {
-        public NoItemException(String e) {
-            super(e);
-        }
-    }
+		public NoItemException(String e) {
+			super(e);
+		}
+	}
 	private String primaryName;
 	private int weight;
 	private Hashtable<String, String> message;
-	private Hashtable<String, String> action;
-	private ArrayList<Wound> wound;
-	private ArrayList<Transform> transform;
+	private Hashtable<String, Wound> wound;
+	private Hashtable<String, Score> score;
+	private Hashtable<String, Transform> transform;
+	private Hashtable<String, Die> die;
+	private Hashtable<String, Win> win;
 
 	/**
 	 * Item constructor
@@ -29,9 +32,9 @@ public class Item
 	{
 		init();
 		this.primaryName = s.nextLine();
+		String line =s.nextLine();
 		if(!primaryName.equals(Dungeon.TOP_LEVEL_DELIM))
 		{
-			String line =s.nextLine();
 			if (!line.equals(Dungeon.SECOND_LEVEL_DELIM))
 			{
 				this.weight = Integer.parseInt(line);
@@ -40,35 +43,43 @@ public class Item
 			if(!msg.equals(Dungeon.SECOND_LEVEL_DELIM))
 			{
 				String[] m;
-			
-			String verb;
-			String noun;
-			String action;
-			while((!line.equals(Dungeon.SECOND_LEVEL_DELIM) && !line.equals(Dungeon.TOP_LEVEL_DELIM))
-					&&(!msg.equals(Dungeon.SECOND_LEVEL_DELIM) && !msg.equals(Dungeon.TOP_LEVEL_DELIM)))
-			{
-				m = msg.split(":");
-				verb = m[0].trim();
-				noun = m[1].trim();
-				action = m[2].trim();
-				message.put(verb,noun);
-				this.action.put(verb,action);
-				msg =s.nextLine();
-			}
+				String verb;
+				String noun;
+				String[] event;
+				int start;
+				int end;
+				StringBuffer v;
+				while((!line.equals(Dungeon.SECOND_LEVEL_DELIM) && !line.equals(Dungeon.TOP_LEVEL_DELIM))
+						&&(!msg.equals(Dungeon.SECOND_LEVEL_DELIM) && !msg.equals(Dungeon.TOP_LEVEL_DELIM)))
+				{
+					m = msg.split(":");
+					verb = m[0].trim();
+					if(verb.contains("["))
+					{
+						start = verb.indexOf("[");
+						end = verb.indexOf("]");
+						event = verb.substring(start+1, end).split(",");
+						v = new StringBuffer(verb);
+						verb = v.replace(start, end+1, "").toString();
+					}
+					noun = m[1].trim();
+					message.put(verb,noun);
+					msg =s.nextLine();
+				}
 			}
 		}
 		else
 			throw new NoItemException("No more item!");
 	}
-	
+
 	void init()
 	{
 		this.message = new Hashtable<String,String>();
-		this.action = new Hashtable<String, String>();
-		this.wound = new ArrayList<Wound>();
-		this.transform = new ArrayList<Transform>();
+		this.wound = new Hashtable<String,Wound>();
+		this.score = new Hashtable<String,Score>();
+		this.transform = new Hashtable<String,Transform>();
 	}
-	
+
 	/**
 	 * Tests nicknames for items
 	 * @param name item's nickname
@@ -102,16 +113,17 @@ public class Item
 		return msg;
 
 	}
-
-	/**
-	 * Gets text corresponding to action related to item
-	 * @param verb action on object
-	 * @return
-	 */
-	public String getActionForVerb(String verb)
+	void getWound(String verb)
 	{
-		String act= action.get(verb);
-		return act;
+		wound.get(verb).execute();
+	}
+	void getScore(String verb)
+	{
+		score.get(verb).execute();
+	}
+	void getTranform(String verb)
+	{
+		transform.get(verb).execute();
 	}
 	
 	/**
@@ -121,31 +133,5 @@ public class Item
 	public String toString()
 	{
 		return primaryName;
-	}
-	
-	public Wound getWound()
-	{
-		for(int i =0; i<wound.size(); i++)
-			if(wound.get(i) != null)
-				return wound.get(i);
-		return null;
-	}
-	
-	public void setWound(Wound w)
-	{
-		this.wound.add(w);
-	}
-	
-	public Transform getTransform()
-	{
-		for(int i =0; i<transform.size(); i++)
-			if(transform.get(i) != null)
-				return transform.get(i);
-		return null;
-	}
-	
-	public void setTransform(Transform t)
-	{
-		this.transform.add(t);
 	}
 }
