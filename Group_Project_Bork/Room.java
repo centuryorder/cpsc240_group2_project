@@ -185,15 +185,15 @@ public class Room {
 	public String describe() {
 		String description;
 		if(hideName){
-			description = "??????????\n";
+			description = "??????????";
 		}
 		else if (beenHere && !hideName) {
 			if (title.contains("Forest"))
 			{
-				description = "Forest"+"\n";
+				description = "Forest";
 			}
 			else
-				description = title +"\n";
+				description = title;
 		} else {
 			if (title.contains("Forest"))
 			{
@@ -202,14 +202,17 @@ public class Room {
 			else
 				description = title + desc;
 		}
-		int count=1;
+		int count= 0;
+		if(!beenHere)
+		{
 		for (Item item: items)
 		{   
 			if(count < items.size())
-				description += "There is a "+item+". ";
+				description += " There is a "+item+". ";
 			else
 				description += "There is a "+item+".";
 			count++;
+		}
 		}
 		//for (Exit exit : exits) {
 		//	description += "\n" + exit.describe();
@@ -233,11 +236,11 @@ public class Room {
 			else
 				dsc = title + desc;
 		}
-		int count=1;
+		int count=0;
 		for (Item item: items)
 		{   
 			if(count < items.size())
-				dsc += "There is a "+item+". ";
+				dsc += " There is a "+item+". ";
 			else
 				dsc += "There is a "+item+".";
 			count++;
