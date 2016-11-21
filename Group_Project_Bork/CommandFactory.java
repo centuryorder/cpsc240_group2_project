@@ -61,6 +61,8 @@ public class CommandFactory {
 				return new ScoreCommand();
 			else if(verb.equals("health"))
 				return new HealthCommand();
+			else if(verb.equals("look"))
+				return new LookCommand();
 			else
 				return new UnknownCommand(verb);
 		}
