@@ -54,7 +54,6 @@ public class CraftingCommand extends Command {
 			return msg+"\n";
 		else
 			return "Can't "+verb+" "+noun+".\n";
-		}
-
 	}
+
 }
