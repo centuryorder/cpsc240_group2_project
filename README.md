@@ -1,4 +1,6 @@
 # cpsc240_group2_project
+Section 1 Group 3
+
 Group members:
 Yohan Hendawan
 Stephen Wilson
