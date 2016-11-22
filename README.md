@@ -1,4 +1,9 @@
 # cpsc240_group2_project
+Group members:
+Yohan Hendawan
+Stephen Wilson
+Matthew Aneiro
+
 Java files should be Package under: Group_Project_Bork.
 Version 3a
 Java Files to be done: (Add "X " when done)
