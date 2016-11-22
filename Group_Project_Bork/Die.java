@@ -44,7 +44,7 @@ public class Die extends Event{
 		{
 			getScore();
 			getRank();
-			System.out.printf("GAMEOVER!%n Score: %d Rank: %s",Score, Rank);
+			System.out.printf("GAMEOVER!%nScore: %d Rank: %s",Score, Rank);
 			System.exit(0);
 		}
 			

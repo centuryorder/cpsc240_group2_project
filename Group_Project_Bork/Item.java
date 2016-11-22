@@ -23,6 +23,8 @@ public class Item
 	private Hashtable<String, Transform> transform;
 	private Hashtable<String, Die> die;
 	private Hashtable<String, Win> win;
+	private Hashtable<String, Teleport> teleport;
+	private Hashtable<String, Disappear> disappear;
 
 	/**
 	 * Item constructor
@@ -94,9 +96,11 @@ public class Item
 								this.die.put(verb, new Die());
 							}
 							else if(i.contains("Win"))
-							{
 								this.win.put(verb, new Win());
-							}
+							else if(i.contains("Teleport"))
+								this.teleport.put(verb, new Teleport());
+							else if(i.contains("Disappear"))
+								this.disappear.put(verb, new Disappear(this));
 						}
 					}
 					noun = m[1].trim();
@@ -117,6 +121,8 @@ public class Item
 		this.transform = new Hashtable<String,Transform>();
 		this.win = new Hashtable<String,Win>();
 		this.die = new Hashtable<String,Die>();
+		this.teleport = new Hashtable<String, Teleport>();
+		this.disappear = new Hashtable<String, Disappear>();
 	}
 
 	/**
@@ -149,6 +155,20 @@ public class Item
 	public String getMessageForVerb(String verb)
 	{
 		String msg= message.get(verb);
+		if(wound.get(verb)!=null)
+			getWound(verb);
+		if(score.get(verb)!=null)
+			getScore(verb);
+		if(transform.get(verb)!=null)
+			getTransform(verb);
+		if(win.get(verb)!=null)
+			getWin(verb);
+		if(die.get(verb)!=null)
+			getDie(verb);
+		if(teleport.get(verb)!=null)
+			getTeleport(verb);
+		if(disappear.get(verb)!=null)
+			getDisappear(verb);
 		return msg;
 
 	}
@@ -160,7 +180,7 @@ public class Item
 	{
 		score.get(verb).execute();
 	}
-	void getTranform(String verb)
+	void getTransform(String verb)
 	{
 		transform.get(verb).execute();
 	}
@@ -171,6 +191,14 @@ public class Item
 	void getDie(String verb)
 	{
 		die.get(verb).execute();
+	}
+	void getTeleport(String verb)
+	{
+		teleport.get(verb).execute();
+	}
+	void getDisappear(String verb)
+	{
+		disappear.get(verb).execute();
 	}
 	
 	/**

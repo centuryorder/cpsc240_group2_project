@@ -21,20 +21,22 @@ public class ItemSpecificCommand extends Command {
 		try {
 			tempI = GameState.instance().getItemFromInventoryNamed(noun);
 			Item tempV= GameState.instance().getItemInVicinityNamed(noun);
-			if (verb.equals("eat")|| verb.equals("drink")|| verb.equals("break"))
+			if (verb.equals("eat")|| verb.equals("drink")|| verb.equals("break")||verb.equals("stomp")
+					||verb.equals("wave")||verb.equals("refill"))
 			{
 				if(tempV != null)
 				{
 					msg = tempV.getMessageForVerb(verb);
-					GameState.instance().getAdventurersCurrentRoom().remove(tempV);
+					//GameState.instance().getAdventurersCurrentRoom().remove(tempV);
 				}
 				else if(tempI != null)
 				{
 					msg = tempI.getMessageForVerb(verb);
-					GameState.instance().removeFromInventory(tempI);
+					//GameState.instance().removeFromInventory(tempI);
 				}
 			}
-			if(verb.equals("shake")||verb.equals("kick")|| verb.equals("touch"))
+			if(verb.equals("shake")||verb.equals("kick")|| verb.equals("touch")||verb.equals("detonate")
+					||verb.equals("recycle")||verb.equals("wave"))
 			{
 				if(tempV != null)
 				{
@@ -45,6 +47,7 @@ public class ItemSpecificCommand extends Command {
 				{
 					
 					msg = tempI.getMessageForVerb(verb);
+					//added a little easter egg
 					if(verb.equals("kick"))
 					{
 						GameState.instance().removeFromInventory(tempI);

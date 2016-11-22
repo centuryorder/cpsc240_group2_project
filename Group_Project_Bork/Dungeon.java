@@ -211,6 +211,7 @@ public class Dungeon {
 	public Room getRoom(String roomTitle) {
 		return rooms.get(roomTitle);
 	}
+	
 	public Item getItem(String primaryName)
 	{
 		return items.get(primaryName);
@@ -232,5 +233,18 @@ public class Dungeon {
 	 */
 	public void addNPC(NPC NPC){
 		this.NPC.put(NPC.getName(), NPC);
+	}
+	
+	public int getRoomCount()
+	{
+		return this.rooms.size();
+	}
+	
+	public String[] getRooms()
+	{
+		Set<String> rm = rooms.keySet();
+		String [] rms= null;
+		rm.toArray(rms);
+		return rms;
 	}
 }
