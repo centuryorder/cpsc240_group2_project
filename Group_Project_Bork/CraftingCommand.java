@@ -17,27 +17,16 @@ public class CraftingCommand extends Command {
 	 */
 	public CraftingCommand (String noun, String verb, String target)
 	{
-<<<<<<< HEAD
-this.noun = noun;
-		this.verb= verb;
-		this.target = target;
-=======
 		this.verb = verb;
 		this.noun = noun;
 		this.target = target;
-
->>>>>>> refs/remotes/origin/Disappear
-
 	}
 
 	/**
 	 * Triggers transform and disappears on an item
 	 */
-<<<<<<< HEAD
 	public String execute() {
-=======
-	public String execute() {{
->>>>>>> refs/remotes/origin/Disappear
+
 		String msg ="Can't do that.";
 		Item tempI;
 		try {
@@ -57,7 +46,6 @@ this.noun = noun;
 				}
 			}
 
-<<<<<<< HEAD
 		} catch (Item.NoItemException e) {
 			e.printStackTrace();
 		}
@@ -66,22 +54,7 @@ this.noun = noun;
 			return msg+"\n";
 		else
 			return "Can't "+verb+" "+noun+".\n";
-	}
-=======
->>>>>>> refs/remotes/origin/Disappear
-
-		} catch (Item.NoItemException e) {
-			e.printStackTrace();
 		}
 
-		if(msg != null)
-			return msg+"\n";
-		else
-			return "Can't "+verb+" "+noun+".\n";
 	}
-
-<<<<<<< HEAD
-		}
-=======
-	}}
->>>>>>> refs/remotes/origin/Disappear
+}
