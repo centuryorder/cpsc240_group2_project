@@ -1,6 +1,6 @@
 # cpsc240_group2_project
 Java files should be Package under: Group_Project_Bork.
-
+Version 3a
 Java Files to be done: (Add "X " when done)
 
 X AttackCommand.java
@@ -27,8 +27,12 @@ X Room.java
 
 X RoomSpecificItemCommand.java
 
-X Transform.java
+Teleport.java
 
-X Win.java
+X TeleportCommand.java
+
+Transform.java
+
+Win.java
 
 X Wound.java
