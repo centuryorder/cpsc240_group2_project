@@ -15,6 +15,8 @@ public class CommandFactory {
 	public static List<String> ITEM_COMMANDS =
 			Arrays.asList("take","drop","i","eat","drink","break","shake",
 					"touch", "kick");
+	public static List<String> STATUS_COMMANDS =
+			Arrays.asList("score","health", "look");
 	public static List<String> ATTACK_COMMANDS =
 			Arrays.asList("");
 	public static List<String> ROOM_ITEM_COMMANDS =
@@ -53,6 +55,16 @@ public class CommandFactory {
 		} 
 		else if (SAVE_COMMANDS.contains(verb)) {
 			return new SaveCommand(noun);
+		}
+		else if (STATUS_COMMANDS.contains(verb)){
+			if(verb.equals("score"))
+				return new ScoreCommand();
+			else if(verb.equals("health"))
+				return new HealthCommand();
+			else if(verb.equals("look"))
+				return new LookCommand();
+			else
+				return new UnknownCommand(verb);
 		}
 		else if (ITEM_COMMANDS.contains(verb) && !noun.equals("")){
 			if(verb.equals("take"))

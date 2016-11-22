@@ -8,10 +8,10 @@ import java.io.*;
  * Class that keep track the status of the game and adventurer
  * @author Yohan Hendrawan
  * @author Matthew Aneiro
- * @version 11/08/2016
+ * @version 11/21/2016
  */
 public class GameState {
-	
+
 	public static class IllegalSaveFormatException extends Exception {
 		public IllegalSaveFormatException(String e) {
 			super(e);
@@ -29,19 +29,19 @@ public class GameState {
 	private Dungeon dungeon;
 	private Room adventurersCurrentRoom;
 	private ArrayList<Item> inventory = new ArrayList<Item>();
-	
+
 	//Adventurer Status
-	private int HP, Armor, Speed, Capacity, Damage;
-	private Score Score;
+	private int HP = 100, Armor, Speed = 10, Capacity =35, Damage;
+	private int Score;
 	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
 	private HashMap<String, Item> equipment = new HashMap<String, Item>();
 	private boolean twoHand;
 	private Timer timer;
 	private TimerTask daylight;
 	private Combat currentCombat;
-	private ArrayList<Wound> wound= new ArrayList<Wound>();
-	
-	
+	private ArrayList<Wound> wound= new ArrayList<Wound>();	
+	private Hashtable<Integer,String> Rank;
+
 	/**
 	 * instance is a singleton 
 	 * @return GameState
@@ -57,7 +57,7 @@ public class GameState {
 		this.equipment.put("head", null);
 		this.equipment.put("chest", null);
 		this.equipment.put("leg", null);
-		
+
 	}
 
 	/**
@@ -128,9 +128,9 @@ public class GameState {
 			int count = 1;
 			for(String s: this.getInventoryNames())
 			{
-				
+
 				if (count < this.getInventoryNames().size())
-				inv += s+",";
+					inv += s+",";
 				else
 				{
 					inv += s;
@@ -169,7 +169,7 @@ public class GameState {
 	Dungeon getDungeon() {
 		return dungeon;
 	}
-	
+
 	/**
 	 * gets names of items in inventory
 	 * @return list of items in inventory
@@ -235,7 +235,7 @@ public class GameState {
 	 * @param room take in room
 	 */
 	public void teleportTo(Room room){
-		
+		this.adventurersCurrentRoom = room;
 	}
 	/**
 	 *getEuipedName return list of name of equipped name and its type for saving purposes
@@ -244,7 +244,7 @@ public class GameState {
 	public ArrayList getEquippedName(){
 		ArrayList<Item> equipped = new ArrayList<Item>();
 		return equipped;
-		
+
 	}
 	/**
 	 * Add item to the correct equipment slot
@@ -252,27 +252,96 @@ public class GameState {
 	 * @param item take in item
 	 */
 	public void addItemToEquipped(Item item){
-		
+
 	}
 	/**
 	 * Remove item from the equipment slot
 	 * @param item take in item
 	 */
 	public void removeItemFromEquipped(Item item){
-		
+
 	}
 	/**
 	 * Changes some room lighting using a timer.
 	 * If its on it turn it off and vice versa.
 	 */
 	void changeRoomLighting(){
-		
+
 	}
 	/**
 	 * Take in the damage that is calculated by during combat
 	 * @param wound take in wound
 	 */
-	public void reciveWound(Wound wound){
-		
+	public void recieveWound(Wound wound){
+		this.HP -= wound.getDamage();
+		if (this.HP >100)
+			this.HP = 100;
+		else if(this.HP <= 0)
+			new Die().execute();
+	}
+
+	public void recieveScore(Score score){
+		this.Score += score.getScore();
+	}
+
+	public void addRank(int tier,String Rank)
+	{
+		this.Rank.put(tier, Rank);
+	}
+
+	public String getRank()
+	{
+		if (this.Rank!= null)
+		{
+			if (this.Score > 0 && this.Score <= 100)
+			{
+				return this.Rank.get(1);
+			}
+			else if (this.Score >100 && this.Score <= 300)
+			{
+				return this.Rank.get(2);
+			}
+			else if (this.Score > 300 && this.Score <= 900)
+			{
+				return this.Rank.get(3);
+			}
+			else if( this.Score >900)
+			{
+				return this.Rank.get(4);
+			}
+			else
+				return "No Body.";
+		}
+		else
+		{
+			if (this.Score > 0 && this.Score <= 10)
+			{
+				return "Curious Person";
+			}
+			else if (this.Score >10 && this.Score <= 30)
+			{
+				return "Adventurer";
+			}
+			else if (this.Score > 30 && this.Score <= 90)
+			{
+				return "Explorer";
+			}
+			else if( this.Score >90)
+			{
+				return "Beater";
+			}
+			else
+				return "No Body.";
+		}
+	}
+
+	public int getScore()
+	{
+		return this.Score;
+	}
+	
+	public int getHP()
+	{
+		return this.HP;
 	}
 }

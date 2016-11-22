@@ -5,7 +5,7 @@ package Group_Project_Bork;
  * @version 11/7/16.
  */
 // Win
-public class Win {
+public class Win extends Event{
 	boolean won;
 	boolean bossdefeated;
 	int score;
@@ -13,7 +13,7 @@ public class Win {
 	 * 
 	 * @param win
 	 */
-	public Win(Win win){
+	public Win(){
 
 	}
 	/**
@@ -37,4 +37,10 @@ public class Win {
 	public boolean endGame(boolean hasWon){
 		return false;
 
-	}}
+	}
+	
+	public void execute()
+	{
+		
+	}
+}
