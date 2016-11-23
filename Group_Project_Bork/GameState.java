@@ -104,8 +104,10 @@ public class GameState {
 			}
 		}
 		String[] HP = s.nextLine().split(":");
-		if (HP[0] == HP_LEADER)
-			this.HP = Integer.parseInt(HP[1].trim());
+		int hp = Integer.parseInt(HP[1].trim());
+		if (HP[0].trim().equals("HP"))
+			this.setHp(hp);
+		System.out.println(this.HP);
 	}
 
 	void store() throws IOException {
@@ -346,6 +348,14 @@ public class GameState {
 			else
 				return "No Body.";
 		}
+	}
+	/**
+	 * Set HP
+	 * @param hp
+	 */
+	void setHp(int hp)
+	{
+		this.HP = hp;
 	}
 	/**
 	 * Return the current Score

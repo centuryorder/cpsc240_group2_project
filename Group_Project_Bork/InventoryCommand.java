@@ -12,22 +12,28 @@ public class InventoryCommand extends Command{
 		this.verb = verb;
 	}
 	public String execute() {
-		String inv ="You are carrying: ";
+		String inv ="You are not carrying anything.";
 		ArrayList<String> items = GameState.instance().getInventoryNames();
 		items.trimToSize();
-		int count=1;
-		for(String i: items)
+		if(items.size() > 0)
 		{
-			inv += i;
-			
-			if(count < items.size())
+			int count=1;
+			inv = "You are carrying: ";
+			for(String i: items)
 			{
-				inv += ", ";
-			}	
-			count++;
+				inv += i;
+
+				if(count < items.size())
+				{
+					inv += ", ";
+				}	
+				count++;
+			}
+			inv +="\n";
+			return inv;
 		}
-		inv +="\n";
-		return inv;
+		else
+			return inv+"\n";
 	}
 
 }
