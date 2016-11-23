@@ -2,8 +2,11 @@
 Section 1 Group 3
 
 Group members:
+
 Yohan Hendawan
+
 Stephen Wilson
+
 Matthew Aneiro
 
 Java files should be Package under: Group_Project_Bork.
