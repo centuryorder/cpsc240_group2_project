@@ -1,11 +1,16 @@
 package Group_Project_Bork;
 /**
- * 
+ * Check the health of adventurer
  * @author Yohan Hendrawan
  * @version 11/21/16
  *
  */
 public class HealthCommand extends Command{
+	/**
+	 * Get the current HP and print our fuzzy message according
+	 * to a preset range.
+	 * 
+	 */
 	public String execute()
 	{
 		int health = GameState.instance().getHP();

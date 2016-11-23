@@ -1,7 +1,4 @@
 package Group_Project_Bork;
-
-import java.util.Hashtable;
-
 /**
  * Class that is used to keep track of score and hold a set of ranking titles
  * @author Stephen Well Son
@@ -10,7 +7,6 @@ import java.util.Hashtable;
  */
 public class Score extends Event{
 	private int score;
-	
 	/**
 	 * Constructor to take in score from .bork file
 	 * @param score
@@ -25,7 +21,9 @@ public class Score extends Event{
 	{
 		return this.score;
 	}
-	
+	/**
+	 * Execute Score event
+	 */
 	public void execute() {
 		GameState.instance().recieveScore(this);
 	}
