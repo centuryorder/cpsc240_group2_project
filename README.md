@@ -37,7 +37,7 @@ X Teleport.java
 
 X TeleportCommand.java
 
-Transform.java
+X Transform.java
 
 X Win.java
 
