@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Class that parses user's input and generate the appropriate command
  * @author Yohan Hendrawan
- * @version 11/07/16
+ * @version 11/21/16
  */
 public class CommandFactory {
 
@@ -37,7 +37,7 @@ public class CommandFactory {
 	private CommandFactory() {
 	}
 	/**
-	 * parse take in up to four words
+	 * Parse take in up to four words
 	 * @param command take in a string
 	 * @return a Command class to generate appropriate action
 	 */

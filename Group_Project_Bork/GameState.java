@@ -1,8 +1,6 @@
 package Group_Project_Bork;
 import java.util.*;
-
 import Group_Project_Bork.Dungeon.IllegalDungeonFormatException;
-
 import java.io.*;
 /**
  * Class that keep track the status of the game and adventurer
@@ -270,7 +268,7 @@ public class GameState {
 	}
 	/**
 	 * Take in the damage that is calculated by during combat
-	 * @param wound take in wound
+	 * @param wound 
 	 */
 	public void recieveWound(Wound wound){
 		this.HP -= wound.getDamage();
@@ -279,16 +277,26 @@ public class GameState {
 		else if(this.HP <= 0)
 			new Die().execute();
 	}
-
+	/**
+	 * Update Score
+	 */
 	public void recieveScore(Score score){
 		this.Score += score.getScore();
 	}
-
+	/**
+	 * Save Rank from a .bork file
+	 * @param tier
+	 * @param Rank
+	 */
 	public void addRank(int tier,String Rank)
 	{
 		this.Rank.put(tier, Rank);
 	}
-
+	/**
+	 * Return a string of rank in a predetermine score range.
+	 * Either used an input form a .bork file or used the default rank.
+	 * @return rank
+	 */
 	public String getRank()
 	{
 		if (this.Rank!= null)
@@ -334,12 +342,18 @@ public class GameState {
 				return "No Body.";
 		}
 	}
-
+	/**
+	 * Return the current Score
+	 * @return Score
+	 */
 	public int getScore()
 	{
 		return this.Score;
 	}
-	
+	/**
+	 * Return Current HP
+	 * @return HP
+	 */
 	public int getHP()
 	{
 		return this.HP;

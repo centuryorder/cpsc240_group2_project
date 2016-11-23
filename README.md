@@ -33,12 +33,12 @@ X Room.java
 
 X RoomSpecificItemCommand.java
 
-Teleport.java
+X Teleport.java
 
 X TeleportCommand.java
 
 Transform.java
 
-Win.java
+X Win.java
 
 X Wound.java

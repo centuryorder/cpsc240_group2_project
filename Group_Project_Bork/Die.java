@@ -11,31 +11,40 @@ public class Die extends Event{
 	int Score = 0;
 	String Rank= "";
 	NPC npc = null;
+	/**
+	 * Constructor
+	 */
 	public Die()
 	{
 	}
+	/**
+	 * Constructor for killing NPC
+	 * @param npc NPC to kill
+	 */
 	public Die(NPC npc){
 		this.npc = npc;
 	}
 	/**
-	 * getScore takes the points integer to calculate the score.
-	 * and also returns the score
-	 *@param points takes the points integer.
+	 * Get Score from GameState
 	 * */
 	void getScore(){
 		Score = GameState.instance().getScore();
 	}
-	
+	/**
+	 * Get Rank from GameState
+	 */
 	void getRank(){
 		Rank = GameState.instance().getRank();
 	}
 	/**
-	 * removeNpc removes npc
+	 * Remove NPC
 	 */
 	void removeNPC(){
 		GameState.instance().getAdventurersCurrentRoom().removeNPC(npc);
 	}
-	
+	/**
+	 * Execute Die event
+	 */
 	public void execute()
 	{
 		if (npc != null)

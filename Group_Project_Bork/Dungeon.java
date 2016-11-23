@@ -240,11 +240,9 @@ public class Dungeon {
 		return this.rooms.size();
 	}
 	
-	public String[] getRooms()
+	public Set getRooms()
 	{
 		Set<String> rm = rooms.keySet();
-		String [] rms= null;
-		rm.toArray(rms);
-		return rms;
+		return rm;
 	}
 }

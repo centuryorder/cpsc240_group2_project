@@ -1,73 +1,41 @@
 package Group_Project_Bork;
 /**
  * Class that trigger the win event
+ * @author Yohan Hendrawan
  * @author Stephen Well Son 
  * @version 11/7/16.
  */
 // Win
 public class Win extends Event{
-	boolean won;
-	boolean bossdefeated;
 	int score;
 	int Score = 0;
 	String Rank= "";
-	NPC npc = null;
 	/**
-	 * 
-	 * @param win
+	 * Constructor
 	 */
 	public Win(){
-
 	}
 	/**
-	 * hasWon take in won bossdefeated and score to calculate a win.  A certain score must be
-	 * achieved.  and the score will be taken and returned with win results. 
-	 * @param won take in won boolean
-	 * @param bossdefeated take in bossdefeated boolean
-	 * @param score take in sroce integer
-	 * @return the boss must be defeated for bossdefeated to return true
+	 * Get Score from GameState
 	 */
-	public boolean hasWon(boolean won, boolean bossdefeated, int score){
-		return false;
-
-	}
 	void getScore(){
 		Score = GameState.instance().getScore();
 	}
-
+	/**
+	 * Get Score from GameState
+	 */
 	void getRank(){
 		Rank = GameState.instance().getRank();
 	}
 	/**
-	 * removeNpc removes npc
+	 * Execute Win event
 	 */
-	void removeNPC(){
-		GameState.instance().getAdventurersCurrentRoom().removeNPC(npc);
-	}
-	/**
-	 * endGame takes hasWon as an argument to determine whether the game should keep running or not (win = close/true/)
-	 *  otherwise keep running/ false
-	 * @param hasWon take in hasWon
-	 * @return return a boolean value
-	 */
-	public boolean endGame(boolean hasWon){
-		return false;
-
-	}
-	
 	public void execute()
 	{
-		if (npc != null)
-			removeNPC();
-		else
-		{
-			getScore();
-			getRank();
-			System.out.printf("You Win!%nScore: %d Rank: %s",Score, Rank);
+		getScore();
+		getRank();
+		System.out.printf("You Win!%nScore: %d Rank: %s",Score, Rank);
 
-			System.exit(0);
-		}
-
-	}
+		System.exit(0);
 	}
 }
