@@ -9,6 +9,9 @@ public class Win extends Event{
 	boolean won;
 	boolean bossdefeated;
 	int score;
+	int Score = 0;
+	String Rank= "";
+	NPC npc = null;
 	/**
 	 * 
 	 * @param win
@@ -28,6 +31,19 @@ public class Win extends Event{
 		return false;
 
 	}
+	void getScore(){
+		Score = GameState.instance().getScore();
+	}
+
+	void getRank(){
+		Rank = GameState.instance().getRank();
+	}
+	/**
+	 * removeNpc removes npc
+	 */
+	void removeNPC(){
+		GameState.instance().getAdventurersCurrentRoom().removeNPC(npc);
+	}
 	/**
 	 * endGame takes hasWon as an argument to determine whether the game should keep running or not (win = close/true/)
 	 *  otherwise keep running/ false
@@ -41,6 +57,17 @@ public class Win extends Event{
 	
 	public void execute()
 	{
-		
+		if (npc != null)
+			removeNPC();
+		else
+		{
+			getScore();
+			getRank();
+			System.out.printf("You Win!%nScore: %d Rank: %s",Score, Rank);
+
+			System.exit(0);
+		}
+
+	}
 	}
 }
