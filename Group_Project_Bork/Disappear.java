@@ -4,8 +4,9 @@ import Group_Project_Bork.Item.NoItemException;
 
 /**
  * Class that erases item from the dungeon
+ * @author Yohan Hendrawan
  * @author Stephen Well Son
- * @version 11/9/16.
+ * @version 11/21/16.
  */
 public class Disappear extends Event{
 	Item item;
@@ -17,7 +18,9 @@ public class Disappear extends Event{
 	public Disappear(Item item){
 		this.item = item;
 	}
-	
+	/**
+	 * Execute Disappear event
+	 */
 	public void execute()
 	{
 		if(GameState.instance().getAdventurersCurrentRoom().getItemNamed(item.getPrimaryName()) != null)
@@ -27,7 +30,6 @@ public class Disappear extends Event{
 				if(GameState.instance().getItemFromInventoryNamed(item.getPrimaryName()) != null)
 					GameState.instance().removeFromInventory(item);
 			} catch (NoItemException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}
