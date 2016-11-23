@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Transform extends Event{
 	String oldItem;
 	String newItem;
+
 	
 	public Transform (String n, String o)
 	{
@@ -19,7 +20,11 @@ public class Transform extends Event{
 	}
 	
 	public void execute() {
-		
-		
+
+		Item resultItem = GameState.instance().getDungeon().getItem(newItem);
+		Item firstItem = GameState.instance().getDungeon().getItem(oldItem);
+
+		GameState.instance().removeFromInventory(firstItem);
+		GameState.instance().addToInventory(resultItem);
 	}
 }
