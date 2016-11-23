@@ -47,5 +47,6 @@ public class Teleport extends Event{
 		Room telTo = GameState.instance().getDungeon().getRoom(temp);
 
 		GameState.instance().teleportTo(telTo);
+		System.out.println(telTo.lookDescribe());
 	}
 }

@@ -35,7 +35,7 @@ public class ItemSpecificCommand extends Command {
 					//GameState.instance().removeFromInventory(tempI);
 				}
 			}
-			if(verb.equals("shake")||verb.equals("kick")|| verb.equals("touch")||verb.equals("detonate")
+			else if(verb.equals("shake")||verb.equals("kick")|| verb.equals("touch")||verb.equals("detonate")
 					||verb.equals("recycle")||verb.equals("wave"))
 			{
 				if(tempV != null)
