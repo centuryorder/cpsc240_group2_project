@@ -18,10 +18,11 @@ public class GameState {
 
 	static String DEFAULT_SAVE_FILE = "bork_save";
 	static String SAVE_FILE_EXTENSION = ".sav";
-	static String SAVE_FILE_VERSION = "Bork v3.0 save data";
+	static String SAVE_FILE_VERSION = "Group Bork v3.0 save data";
 	static String ADVENTURER_LEADER = "Adventurer:";
 	static String CURRENT_ROOM_LEADER = "Current room: ";
 	static String INVENTORY_LEADER = "Inventory: ";
+	static String HP_LEADER = "HP: ";
 
 	private static GameState theInstance;
 	private Dungeon dungeon;
@@ -102,6 +103,9 @@ public class GameState {
 				}
 			}
 		}
+		String[] HP = s.nextLine().split(":");
+		if (HP[0] == HP_LEADER)
+			this.HP = Integer.parseInt(HP[1].trim());
 	}
 
 	void store() throws IOException {
@@ -140,6 +144,7 @@ public class GameState {
 		else
 			w.println(INVENTORY_LEADER);
 
+		w.println(HP_LEADER + this.HP);
 		w.close();
 	}
 
