@@ -1,16 +1,12 @@
 # cpsc240_group2_project
 Section 1 Group 3
 
-Group members:
+Version 3a
 
-Yohan Hendawan
-
-Stephen Wilson
-
-Matthew Aneiro
+Group members: Yohan Hendawan, Stephen Wilson, and Matthew Aneiro
 
 Java files should be Package under: Group_Project_Bork.
-Version 3a
+
 Java Files to be done: (Add "X " when done)
 
 X AttackCommand.java
