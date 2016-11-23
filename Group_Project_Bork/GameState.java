@@ -107,7 +107,7 @@ public class GameState {
 		int hp = Integer.parseInt(HP[1].trim());
 		if (HP[0].trim().equals("HP"))
 			this.setHp(hp);
-		System.out.println(this.HP);
+		//System.out.println(this.HP);
 	}
 
 	void store() throws IOException {

@@ -9,7 +9,7 @@ public class Interpreter {
 
     private static GameState state; // not strictly necessary; GameState is 
                                     // singleton
-
+    private static String BASIC_COMMANDS = "Some of basic command are look, save, i(inventory view), and q(quit).";
     public static String USAGE_MSG = 
         "Usage: Interpreter borkFile.bork|saveFile.sav.";
 
@@ -29,10 +29,12 @@ public class Interpreter {
                 state.initialize(new Dungeon(args[0],true));
                 System.out.println("\nWelcome to " + 
                     state.getDungeon().getName() + "!");
+                System.out.println(BASIC_COMMANDS);
             } else if (args[0].endsWith(".sav")) {
                 state.restore(args[0]);
                 System.out.println("\nWelcome back to " + 
                     state.getDungeon().getName() + "!");
+                System.out.println(BASIC_COMMANDS);
             } else {
                 System.err.println(USAGE_MSG);
                 System.exit(2);

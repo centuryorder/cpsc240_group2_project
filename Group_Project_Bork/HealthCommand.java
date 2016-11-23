@@ -27,7 +27,7 @@ public class HealthCommand extends Command{
 			msg = "You got some scrapes and bruise.\n";
 		else if (health == 100)
 			msg = "You are healthy.\n";
-		msg += " " +health;
+		//msg += " " +health;
 		
 		return msg;
 	}
