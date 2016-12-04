@@ -4,7 +4,7 @@ import java.util.Hashtable;
 /**
  * Object class that hold the Non Player Character properties
  * @author Yohan Hendrawan
- * @version 11/09/16 
+ * @version 12/03/16
  */
 public class NPC {
     private String name;
@@ -43,19 +43,6 @@ public class NPC {
     public void setHealth(int health){
         this.health = health;
     }
-
-    /**
-     * Returns if the NPC is alive or dead and uses health as reference
-     * @param health is taken as an integer.
-
-     */
-    public boolean isAlive(int health){
-    	if(health > 0)
-    		return true;
-    	else
-    		return false;
-    }
-
     /**
      * Returns boolean that determines whether or not an npc will act aggressively towards the player.
      * @return false by default
@@ -71,7 +58,11 @@ public class NPC {
     
     public void recieveWound(Wound wound)
     {
-    	
+    	this.health -= wound.getDamage();
+		if (this.health >100)
+			this.health = 100;
+		else if(this.health <= 0)
+			new Die().execute();
     }
     public String toString()
     {

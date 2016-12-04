@@ -6,7 +6,7 @@ import java.io.*;
  * Class that keep track the status of the game and adventurer
  * @author Yohan Hendrawan
  * @author Matthew Aneiro
- * @version 11/21/2016
+ * @version 12/03/2016
  */
 public class GameState {
 
