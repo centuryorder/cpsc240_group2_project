@@ -235,6 +235,14 @@ public class Dungeon {
 		this.NPC.put(NPC.getName(), NPC);
 	}
 	
+	public void removeNPC(NPC NPC)
+	{
+		this.NPC.remove(NPC.getName());
+	}
+	public NPC getNPC(String NPC)
+	{
+		return this.NPC.get(NPC);
+	}
 	public int getRoomCount()
 	{
 		return this.rooms.size();
@@ -245,4 +253,5 @@ public class Dungeon {
 		Set<String> rm = rooms.keySet();
 		return rm;
 	}
+	
 }

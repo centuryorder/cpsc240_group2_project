@@ -9,6 +9,7 @@ import java.util.Set;
  */
 public class Teleport extends Event{
 	private String target = null;
+	private String NPC = null;
 	/**
 	 * Constructor for random teleport
 	 */
@@ -19,6 +20,11 @@ public class Teleport extends Event{
 	 */
 	public Teleport(String target)
 	{
+		this.target = target;
+	}
+	public Teleport(String NPC, String target)
+	{
+		this.NPC = NPC;
 		this.target = target;
 	}
 	/**
@@ -32,7 +38,13 @@ public class Teleport extends Event{
 		Set<String> rooms = GameState.instance().getDungeon().getRooms();
 		String temp ="";
 		int count = 0;
-		if (this.target != null)
+		if (this.target !=null && this.NPC != null)
+		{
+			NPC npc = GameState.instance().getDungeon().getNPC(NPC);
+			GameState.instance().getAdventurersCurrentRoom().removeNPC(npc);
+			GameState.instance().getDungeon().getRoom(target).addNPC(npc);
+		}
+		else if (this.target != null && this.NPC == null)
 			temp = this.target;
 		else
 		{

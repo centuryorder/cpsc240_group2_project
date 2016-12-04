@@ -1,6 +1,7 @@
 package Group_Project_Bork;
 
 import java.util.Hashtable;
+import java.util.Scanner;
 /**
  * Object class that hold the Non Player Character properties
  * @author Yohan Hendrawan
@@ -8,6 +9,7 @@ import java.util.Hashtable;
  */
 public class NPC {
     private String name;
+    private int maxHP;
     private int health;
     private int armor;
     private boolean hostile = false;
@@ -21,6 +23,11 @@ public class NPC {
     	this.armor = armor;
     	this.hostile = hostile;
     	this.boss = boss;
+    }
+    
+    public NPC(Scanner s)
+    {
+    	
     }
     /**
      * Takes name as argument and associates it with npc
@@ -59,8 +66,8 @@ public class NPC {
     public void recieveWound(Wound wound)
     {
     	this.health -= wound.getDamage();
-		if (this.health >100)
-			this.health = 100;
+		if (this.health > maxHP)
+			this.health = maxHP;
 		else if(this.health <= 0)
 			new Die().execute();
     }
