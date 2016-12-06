@@ -209,4 +209,12 @@ public class Item
 	{
 		return primaryName;
 	}
+	public int getWeight()
+	{
+		return this.weight;
+	}
+	private void setWeight(int weight)
+	{
+		this.weight = weight;
+	}
 }

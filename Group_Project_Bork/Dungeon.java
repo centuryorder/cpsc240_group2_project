@@ -4,7 +4,7 @@ import java.io.*;
 /**
  * Class that contain all the rooms, items, and NPC in the game
  * @author Yohan Hendrawan
- * @version 11/08/16
+ * @version 1/05/16
  */
 public class Dungeon {
 
@@ -22,6 +22,7 @@ public class Dungeon {
 	public static String ROOMS_MARKER = "Rooms:";
 	public static String EXITS_MARKER = "Exits:";
 	public static String ITEMS_MARKER = "Items:";
+	public static String NPC_MARKER = "NPC:";
 
 	// Variables relating to game state (.sav) storage.
 	static String FILENAME_LEADER = "Dungeon file: ";
@@ -50,7 +51,7 @@ public class Dungeon {
 	 */
 	public Dungeon(String filename) throws FileNotFoundException,
 	IllegalDungeonFormatException, Item.NoItemException {this(filename, true);}{
-/**
+		/**
 		init();
 		this.filename = filename;
 
@@ -121,46 +122,51 @@ public class Dungeon {
 			throw new IllegalDungeonFormatException("No '" +
 					ITEMS_MARKER + "' line where expected.");
 		}
-			try{
-				while(true){
+		try{
+			while(true){
 				this.add(new Item(s));
-				}
 			}
-			catch(Item.NoItemException e){}
-			//String line = s.nextLine();
-			// Throw away Rooms starter.
-			if (!s.nextLine().equals(ROOMS_MARKER)) {
-				throw new IllegalDungeonFormatException("No '" +
-						ROOMS_MARKER + "' line where expected.");
+		}
+		catch(Item.NoItemException e){}
+		String line = s.nextLine();
+		if(line.equals(NPC_MARKER))
+		{
+			while(true)
+			{
+				addNPC(new NPC(s));
 			}
+		}
+		// Throw away Rooms starter.
+		else if (!line.equals(ROOMS_MARKER)) {
+			throw new IllegalDungeonFormatException("No '" +
+					ROOMS_MARKER + "' line where expected.");
+		}
+		try {
+			// Instantiate and add first room (the entry).
+			entry = new Room(s, this, initState);
+			add(entry);
 
-
-			try {
-				// Instantiate and add first room (the entry).
-				entry = new Room(s, this, initState);
-				add(entry);
-
-				// Instantiate and add other rooms.
-				while (true) {
-					add(new Room(s, this, initState));
-				}
+			// Instantiate and add other rooms.
+			while (true) {
+				add(new Room(s, this, initState));
 			}
-			catch(Room.NoRoomException e){}
+		}
+		catch(Room.NoRoomException e){}
+		
+		// Throw away Exits starter.
+		if (!s.nextLine().equals(EXITS_MARKER)) {
+			throw new IllegalDungeonFormatException("No '" +
+					EXITS_MARKER + "' line where expected.");
+		}
 
-			// Throw away Exits starter.
-			if (!s.nextLine().equals(EXITS_MARKER)) {
-				throw new IllegalDungeonFormatException("No '" +
-						EXITS_MARKER + "' line where expected.");
+		try {
+			// Instantiate exits.
+			while (true) {
+				Exit exit = new Exit(s, this);
 			}
+		} catch (Exit.NoExitException e) {  /* end of exits */ }
 
-			try {
-				// Instantiate exits.
-				while (true) {
-					Exit exit = new Exit(s, this);
-				}
-			} catch (Exit.NoExitException e) {  /* end of exits */ }
-
-			s.close();
+		s.close();
 	}
 
 	// Common object initialization tasks, regardless of which constructor
@@ -168,6 +174,7 @@ public class Dungeon {
 	private void init() {
 		rooms = new Hashtable<String,Room>();
 		items = new Hashtable<String,Item>();
+		NPC = new Hashtable<String,NPC>();
 	}
 
 	/*
@@ -211,7 +218,7 @@ public class Dungeon {
 	public Room getRoom(String roomTitle) {
 		return rooms.get(roomTitle);
 	}
-	
+
 	public Item getItem(String primaryName)
 	{
 		return items.get(primaryName);
@@ -221,7 +228,7 @@ public class Dungeon {
 	{
 		items.put(item.getPrimaryName(), item);
 	}
-	
+
 	public boolean getInitState()
 	{
 		return this.initState;
@@ -234,7 +241,7 @@ public class Dungeon {
 	public void addNPC(NPC NPC){
 		this.NPC.put(NPC.getName(), NPC);
 	}
-	
+
 	public void removeNPC(NPC NPC)
 	{
 		this.NPC.remove(NPC.getName());
@@ -247,11 +254,11 @@ public class Dungeon {
 	{
 		return this.rooms.size();
 	}
-	
+
 	public Set getRooms()
 	{
 		Set<String> rm = rooms.keySet();
 		return rm;
 	}
-	
+
 }

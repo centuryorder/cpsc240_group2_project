@@ -5,8 +5,8 @@ import java.io.*;
 /**
  * Class that keep track the status of the game and adventurer
  * @author Yohan Hendrawan
- * @author Matthew Aneiro
- * @version 12/03/2016
+ * @author Stephen Willson
+ * @version 12/05/2016
  */
 public class GameState {
 
@@ -23,6 +23,7 @@ public class GameState {
 	static String CURRENT_ROOM_LEADER = "Current room: ";
 	static String INVENTORY_LEADER = "Inventory: ";
 	static String HP_LEADER = "HP: ";
+	static String WEIGHT_LEADER = "Weight: ";
 
 	private static GameState theInstance;
 	private Dungeon dungeon;
@@ -30,7 +31,7 @@ public class GameState {
 	private ArrayList<Item> inventory = new ArrayList<Item>();
 
 	//Adventurer Status
-	private int HP = 100, Armor, Speed = 10, Capacity =35, Damage, currentWeight = 0;
+	private int HP = 100, Armor, Speed = 10, Damage, currentWeight = 0;
 	private int Score;
 	private final int MAXWEIGHT = 75;
 	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
@@ -148,6 +149,7 @@ public class GameState {
 			w.println(INVENTORY_LEADER);
 
 		w.println(HP_LEADER + this.HP);
+		w.println(WEIGHT_LEADER + this.currentWeight);
 		w.close();
 	}
 

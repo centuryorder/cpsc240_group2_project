@@ -57,7 +57,8 @@ public class Room {
 	}
 
 	public Room(Scanner s, Dungeon d) throws NoRoomException, 
-	Dungeon.IllegalDungeonFormatException, Item.NoItemException, Item.NoItemException{this(s,d,true);}
+	Dungeon.IllegalDungeonFormatException, 
+	Item.NoItemException, Item.NoItemException{this(s,d,true);}
 
 	public Room(Scanner s, Dungeon d, boolean initState) throws NoRoomException,
 	Dungeon.IllegalDungeonFormatException, Item.NoItemException
