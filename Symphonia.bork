@@ -1,34 +1,55 @@
 Symphonia
-Bork v3.0
+Group Bork v1.0
 ===
 Items:
-DrPepper
-10
-kick:The can skitters down the hallway.:disappear
-shake:A liquid fizzes menacingly inside the can.:false
-drink:Gulp, gulp -- that was GOOD!  *belch*:EmptyCan
+GlowingCrystal
+1000
+LightSource:true
 ---
-magicWand
+GlowingCrystalFragment
 5
+LightSource:true 
 ---
-StarWarsToy
-5
-touch:Yoda says, "Do, or do not! There is no try.":false
-break:Whoops!:disappear
+KeyHandle
+1
+Use[Transform(KeyHead, SkeletonKey),Score(100),Disappear]: You made a SkeletonKey
 ---
-chainsaw
-35
+KeyHead
+1
+Use[Transform(KeyHandle, Skeletonkey),Score(100),Disappear]: You made a SkeletonKey
 ---
-WawaTravelMug
-10
+SkeletonKey
+2
+Use[Unlock]:It opens anything!
 ---
-donut
-7
-eat:You feel mildly guilt-ridden.:disappear
+DoorKey
+2
+Use[Unlock(n,Temple):
+---
+Pickaxe
+15
+Use[RoomEvent(GlowingCrystal, GlowingCystalFrament),Score(100)]: You mine the GlowingCrystal and got a fragment.
+---
+EasterEgg
+1
+shake:Nothing Happens!
+break[Transform(KeyHead),Score(10),Disappear]:Whoops! a key head is in the mids of the yolk
+---
+Cookie
+1
+eat[wound(-5)]:You feel mildly guilt-ridden.
+---
+===
+NPC:
+Mysterious Man
+HP:1000
+armor:0
+talk[Die(Mysterious Man)]:Welcome To Nightmare! He threw a smoke bomb and disappear!
 ---
 ===
 Rooms:
 Temple
+NPC: Mysterious Man
 You are inside what look like a temple.
 You see a circular platform with unknown engraving on one end of the temple.
 You see strange glowing crystals on the wall lighting the temple.
@@ -36,6 +57,7 @@ There are six ornate marble pillars holding up the ceiling.
 There is an altar with two lit candles. A door way is wide open to the north.
 ---
 Crystal Cave
+Contents: GlowingCrystal
 You entered a giant cave. You can hear the sound of water echoing from a tunnel to
 the north. You see a temple inside the cave to the south. You see strange glowing
 crystals lighting the path to the temple.
@@ -63,6 +85,7 @@ Eastern Forest
 You are surrounded by tree. You hear birds chirping.
 ---
 Northern Forest
+Contents: EasterEgg
 You are surrounded by tree. You hear birds chirping.
 ---
 Western Forest
