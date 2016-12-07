@@ -4,12 +4,18 @@ import java.util.Hashtable;
 import java.util.Scanner;
 
 import Group_Project_Bork.Dungeon.IllegalDungeonFormatException;
+import Group_Project_Bork.Item.NoItemException;
 /**
  * Object class that hold the Non Player Character properties
  * @author Yohan Hendrawan
  * @version 12/05/16
  */
 public class NPC {
+	public static class NoNPCException extends Exception {
+		public NoNPCException(String e) {
+			super(e);
+		}
+	}
 	private String name;
 	private int maxHP;
 	private int health;
@@ -17,14 +23,12 @@ public class NPC {
 	private boolean hostile = false;
 	private boolean boss = false;
 	private  Hashtable<String,String> message = new Hashtable<String,String>();
-	
+
 	private Hashtable<String, Wound> wound;
 	private Hashtable<String, Score> score;
-	private Hashtable<String, Transform> transform;
 	private Hashtable<String, Die> die;
 	private Hashtable<String, Win> win;
 	private Hashtable<String, Teleport> teleport;
-	private Hashtable<String, Disappear> disappear;
 
 	public NPC(String name, int health, int armor, boolean hostile, boolean boss)
 	{
@@ -36,70 +40,84 @@ public class NPC {
 		this.boss = boss;
 	}
 
-	public NPC(Scanner s) throws IllegalDungeonFormatException
+	public NPC(Scanner s) throws NoNPCException
 	{
 		init();
-		this.name =s.nextLine();
-		String [] info;
-		info = s.nextLine().split(":");
-		this.health = Integer.parseInt(info[1]);
-		info = s.nextLine().split(":");
-		this.armor = Integer.parseInt(info[1]);
-		String [] events;
-		info = s.nextLine().split(":");
-		String verb = info[0], noun = info[1];
-		int start, end, value;
-		if (verb.contains("["))
+		String line = s.nextLine();
+		if(!line.equals(Dungeon.TOP_LEVEL_DELIM))
 		{
-			start = verb.indexOf("[");
-			end = verb.indexOf("]");
-			events = verb.substring(start+1, end).split(",");
-			StringBuffer v = new StringBuffer(verb);
-			verb = v.replace(start, end+1, "").toString();
-			for(String i: events)
+			this.name = line;
+			line = s.nextLine();
+			String [] info;
+			if (!line.equals(Dungeon.SECOND_LEVEL_DELIM) && !line.equals(Dungeon.TOP_LEVEL_DELIM))
 			{
-				int st =0;
-				int en =0;
-				if(i.contains("Wound"))
+				info = line.split(":");
+				this.health = Integer.parseInt(info[1]);
+				info = s.nextLine().split(":");
+				this.armor = Integer.parseInt(info[1]);
+			}
+			String [] events;
+			String msg = s.nextLine();
+			int start, end, value;
+			if(!msg.equals(Dungeon.SECOND_LEVEL_DELIM))
+			{
+				while((!line.equals(Dungeon.SECOND_LEVEL_DELIM) && !line.equals(Dungeon.TOP_LEVEL_DELIM))
+						&&(!msg.equals(Dungeon.SECOND_LEVEL_DELIM) && !msg.equals(Dungeon.TOP_LEVEL_DELIM)))
 				{
-					st = i.indexOf("(");
-					en = i.indexOf(")");
-					value = Integer.parseInt(i.substring(st+1,en));
-					this.wound.put(verb, new Wound(value));
+
+					info = msg.split(":");
+					String verb = info[0], noun = info[1];
+					if (verb.contains("["))
+					{
+						start = verb.indexOf("[");
+						end = verb.indexOf("]");
+						events = verb.substring(start+1, end).split(",");
+						StringBuffer v = new StringBuffer(verb);
+						verb = v.replace(start, end+1, "").toString();
+						for(String i: events)
+						{
+							int st =0;
+							int en =0;
+							if(i.contains("Wound"))
+							{
+								st = i.indexOf("(");
+								en = i.indexOf(")");
+								value = Integer.parseInt(i.substring(st+1,en));
+								this.wound.put(verb, new Wound(value));
+							}
+							else if(i.contains("Score"))
+							{
+								st = i.indexOf("(");
+								en = i.indexOf(")");
+								value = Integer.parseInt(i.substring(st+1,en));
+								this.score.put(verb, new Score(value));
+							}
+							else if(i.contains("Die"))
+							{
+								this.die.put(verb, new Die(this));
+							}
+							else if(i.contains("Win"))
+								this.win.put(verb, new Win());
+							else if(i.contains("Teleport"))
+								this.teleport.put(verb, new Teleport());
+						}
+					}
+					this.addMessage(verb, noun);
+					msg = s.nextLine();
 				}
-				else if(i.contains("Score"))
-				{
-					st = i.indexOf("(");
-					en = i.indexOf(")");
-					value = Integer.parseInt(i.substring(st+1,en));
-					this.score.put(verb, new Score(value));
-				}
-				else if(i.contains("Die"))
-				{
-					this.die.put(verb, new Die(this));
-				}
-				else if(i.contains("Win"))
-					this.win.put(verb, new Win());
-				else if(i.contains("Teleport"))
-					this.teleport.put(verb, new Teleport());
 			}
 		}
-		this.addMessage(verb, noun);
-		if (!s.nextLine().equals(Dungeon.SECOND_LEVEL_DELIM)) {
-			throw new Dungeon.IllegalDungeonFormatException("No '" +
-					Dungeon.SECOND_LEVEL_DELIM + "' after NPC.");
-		}
+		else
+			throw new NoNPCException("No more NPC!");
 	}
 	void init()
 	{
 		this.message = new Hashtable<String,String>();
 		this.wound = new Hashtable<String,Wound>();
 		this.score = new Hashtable<String,Score>();
-		this.transform = new Hashtable<String,Transform>();
 		this.win = new Hashtable<String,Win>();
 		this.die = new Hashtable<String,Die>();
 		this.teleport = new Hashtable<String, Teleport>();
-		this.disappear = new Hashtable<String, Disappear>();
 	}
 	/**
 	 * Takes name as argument and associates it with npc
@@ -142,6 +160,42 @@ public class NPC {
 			this.health = maxHP;
 		else if(this.health <= 0)
 			new Die().execute();
+	}
+	public String getMessageForVerb(String verb)
+	{
+		String msg= message.get(verb);
+		if(wound.get(verb)!=null)
+			getWound(verb);
+		if(score.get(verb)!=null)
+			getScore(verb);
+		if(win.get(verb)!=null)
+			getWin(verb);
+		if(die.get(verb)!=null)
+			getDie(verb);
+		if(teleport.get(verb)!=null)
+			getTeleport(verb);
+		return msg;
+
+	}
+	void getWound(String verb)
+	{
+		wound.get(verb).execute();
+	}
+	void getScore(String verb)
+	{
+		score.get(verb).execute();
+	}
+	void getWin(String verb)
+	{
+		win.get(verb).execute();
+	}
+	void getDie(String verb)
+	{
+		die.get(verb).execute();
+	}
+	void getTeleport(String verb)
+	{
+		teleport.get(verb).execute();
 	}
 	public String toString()
 	{

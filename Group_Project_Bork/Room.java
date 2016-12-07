@@ -1,5 +1,8 @@
 package Group_Project_Bork;
 import java.util.*;
+
+import Group_Project_Bork.NPC.NoNPCException;
+
 import java.io.*;
 /**
  * Object class used to hold room properties
@@ -58,33 +61,71 @@ public class Room {
 
 	public Room(Scanner s, Dungeon d) throws NoRoomException, 
 	Dungeon.IllegalDungeonFormatException, 
-	Item.NoItemException, Item.NoItemException{this(s,d,true);}
+	Item.NoItemException, Item.NoItemException, NoNPCException{this(s,d,true);}
 
 	public Room(Scanner s, Dungeon d, boolean initState) throws NoRoomException,
-	Dungeon.IllegalDungeonFormatException, Item.NoItemException
+	Dungeon.IllegalDungeonFormatException, Item.NoItemException, NoNPCException
 	{
 		init();
 		title = s.nextLine();
 		desc = "";
 		if (title.equals(Dungeon.TOP_LEVEL_DELIM)) {
 			throw new NoRoomException();
-		}  
-
+		}
 		String lineOfDesc = s.nextLine();
-		String[] contents = lineOfDesc.split(" ");
-		String header = contents[0];
-		String[] content;
-		if(contents.length > 1 && header.equals(Dungeon.ROOM_CONTENTS_MARKER))
+		String[] contents = lineOfDesc.split(":");
+		String header = contents[0].trim()+":";
+		if(contents.length > 1 && header.equals(Dungeon.ROOM_NPC_MARKER))
 		{
 			if(initState != false)
 			{
-				content = contents[1].split(",");
+				String[] NPC = contents[1].split(",");
+				for(String n:NPC)
+					if(d.getNPC(n.trim()) == null)
+					{throw new NPC.NoNPCException("No NPC found");}
+					else
+						this.addNPC(d.getNPC(n.trim()));
+			}
+			lineOfDesc =s.nextLine();
+			contents = lineOfDesc.split(":");
+			header = contents[0].trim()+":";
+			if(contents.length > 1 && header.equals(Dungeon.ROOM_CONTENTS_MARKER))
+			{
+					String[] content = contents[1].split(",");
+					for(String item: content) 
+					{	
+						if(d.getItem(item.trim()) == null)     			
+						{throw new Item.NoItemException("No item found");}
+						else
+							this.add(d.getItem(item.trim()));
+					}
+				lineOfDesc =s.nextLine();
+				while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
+						!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
+					desc += "\n"+ lineOfDesc;
+					lineOfDesc = s.nextLine();
+				}
+			}
+			else
+			{
+				while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
+						!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
+					desc += "\n"+ lineOfDesc;
+					lineOfDesc = s.nextLine();
+				}
+			}
+		}
+		else if(contents.length > 1 && header.equals(Dungeon.ROOM_CONTENTS_MARKER))
+		{
+			if(initState != false)
+			{
+				String[] content = contents[1].split(",");
 				for(String item: content) 
 				{	
-					if(d.getItem(item) == null)     			
+					if(d.getItem(item.trim()) == null)     			
 					{throw new Item.NoItemException("No item found");}
 					else
-						this.add(d.getItem(item));
+						this.add(d.getItem(item.trim()));
 				}
 			}
 			lineOfDesc =s.nextLine();
@@ -206,14 +247,22 @@ public class Room {
 		int count= 0;
 		if(!beenHere)
 		{
-		for (Item item: items)
-		{   
-			if(count < items.size())
-				description += " There is a "+item+". ";
-			else
-				description += "There is a "+item+".";
-			count++;
-		}
+			for (NPC i: NPC)
+			{   
+				if(count < NPC.size())
+					description += " There is a "+i+". ";
+				else
+					description += "There is a "+i+".";
+				count++;
+			}
+			for (Item item: items)
+			{   
+				if(count < items.size())
+					description += " There is a "+item+". ";
+				else
+					description += "There is a "+item+".";
+				count++;
+			}
 		}
 		//for (Exit exit : exits) {
 		//	description += "\n" + exit.describe();
@@ -221,7 +270,7 @@ public class Room {
 		beenHere = true;
 		return description;
 	}
-	
+
 	public String lookDescribe()
 	{
 		String dsc="";
@@ -296,14 +345,27 @@ public class Room {
 	 * @param NPC take in NPC
 	 */
 	void addNPC(NPC NPC){
-
+		this.NPC.add(NPC);
 	}
 	/**
 	 * Remove NPC in the case that it dies or move to another location
 	 * @param NPC take in NPC
 	 */
 	void removeNPC(NPC NPC){
-
+		this.NPC.remove(NPC);
+	}
+	public NPC getNPC(String NPC)
+	{
+		NPC temp = null;
+		for(NPC i:this.NPC)
+		{
+			if (i.getName().equals(NPC))
+			{
+				temp = i;
+				break;
+			}
+		}
+		return temp;
 	}
 	/**
 	 * Change the room lighting.

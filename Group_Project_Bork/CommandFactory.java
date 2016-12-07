@@ -15,6 +15,7 @@ public class CommandFactory {
 	public static List<String> ITEM_COMMANDS =
 			Arrays.asList("take","drop","i","eat","drink","break","shake",
 					"touch", "kick", "detonate", "recycle","stomp", "wave", "refill");
+	public static List<String> NPC_COMMANDS = Arrays.asList("talk");
 	public static List<String> STATUS_COMMANDS =
 			Arrays.asList("score","health", "look");
 	public static List<String> ATTACK_COMMANDS =
@@ -42,12 +43,16 @@ public class CommandFactory {
 	 * @return a Command class to generate appropriate action
 	 */
 	public Command parse(String command) {
-		String[] c = command.split(" ", 2);
+		String[] c = command.split(" ");
 		String verb= c[0].toLowerCase();
 		String noun = "";
-		if (c.length > 1)
+		if (c.length > 1 && c.length <= 2)
 		{
 			noun = c[1];
+		}
+		else if (c.length > 2 && c[1].equals("to"))
+		{
+			noun = c[2]+" "+c[3];
 		}
 
 		if (MOVEMENT_COMMANDS.contains(verb)) {
@@ -65,6 +70,10 @@ public class CommandFactory {
 				return new LookCommand();
 			else
 				return new UnknownCommand(verb);
+		}
+		else if (NPC_COMMANDS.contains(verb))
+		{
+			return new NPCSpecificCommand(verb,noun);
 		}
 		else if (ITEM_COMMANDS.contains(verb) && !noun.equals("")){
 			if(verb.equals("take"))

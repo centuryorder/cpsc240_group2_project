@@ -1,5 +1,8 @@
 package Group_Project_Bork;
 import java.util.*;
+
+import Group_Project_Bork.NPC.NoNPCException;
+
 import java.io.*;
 /**
  * Class that contain all the rooms, items, and NPC in the game
@@ -28,12 +31,13 @@ public class Dungeon {
 	static String FILENAME_LEADER = "Dungeon file: ";
 	static String ROOM_STATES_MARKER = "Room states:";
 	static String ROOM_CONTENTS_MARKER = "Contents:";
+	static String ROOM_NPC_MARKER = "NPC:";
 	// Variable for the Dungeon
 	private String name;
 	private Room entry;
 	private Hashtable<String,Room> rooms;
 	private Hashtable<String,Item> items;
-	private Hashtable<String,NPC> NPC;
+	private Hashtable<String,NPC> NPC = new Hashtable<String,NPC>();
 	private String filename;
 	private boolean initState;
 
@@ -128,16 +132,18 @@ public class Dungeon {
 			}
 		}
 		catch(Item.NoItemException e){}
-		String line = s.nextLine();
-		if(line.equals(NPC_MARKER))
-		{
+		if (!s.nextLine().equals(NPC_MARKER)) {
+			throw new IllegalDungeonFormatException("No '" +
+					NPC_MARKER + "' line where expected.");
+		}
+		try {
 			while(true)
 			{
-				addNPC(new NPC(s));
-			}
-		}
+				this.addNPC(new NPC(s));
+			} 
+		}catch (NoNPCException e) {}
 		// Throw away Rooms starter.
-		else if (!line.equals(ROOMS_MARKER)) {
+		if (!s.nextLine().equals(ROOMS_MARKER)) {
 			throw new IllegalDungeonFormatException("No '" +
 					ROOMS_MARKER + "' line where expected.");
 		}
@@ -145,20 +151,18 @@ public class Dungeon {
 			// Instantiate and add first room (the entry).
 			entry = new Room(s, this, initState);
 			add(entry);
-
 			// Instantiate and add other rooms.
 			while (true) {
 				add(new Room(s, this, initState));
 			}
 		}
-		catch(Room.NoRoomException e){}
-		
+		catch(Room.NoRoomException | NoNPCException e){}
 		// Throw away Exits starter.
-		if (!s.nextLine().equals(EXITS_MARKER)) {
+		String line = s.nextLine();
+		if (!line.equals(EXITS_MARKER)) {
 			throw new IllegalDungeonFormatException("No '" +
 					EXITS_MARKER + "' line where expected.");
 		}
-
 		try {
 			// Instantiate exits.
 			while (true) {
@@ -174,7 +178,6 @@ public class Dungeon {
 	private void init() {
 		rooms = new Hashtable<String,Room>();
 		items = new Hashtable<String,Item>();
-		NPC = new Hashtable<String,NPC>();
 	}
 
 	/*
@@ -239,7 +242,8 @@ public class Dungeon {
 	 * @param NPC take in NPC class
 	 */
 	public void addNPC(NPC NPC){
-		this.NPC.put(NPC.getName(), NPC);
+		if (NPC.getName() !=null)
+			this.NPC.put(NPC.getName(), NPC);
 	}
 
 	public void removeNPC(NPC NPC)

@@ -19,8 +19,7 @@ NPC:
 Mysterious Man
 HP:1000
 armor:0
-talk(1)[Teleport(Mysterious Man,Room B13)]:Welcome To Nightmare!
-talk(2)[Die(Mysterious Man)]:Muahaaahaahaha!
+talk[Die(Mysterious Man)]:Welcome To Nightmare! He threw a smoke bomb and disappear!
 ---
 ===
 Rooms:
@@ -42,6 +41,7 @@ Room B6
 Sunlight streams through tall windows and illuminates a brilliant classroom.
 ---
 Room B13
+NPC: Mysterious Man
 Contents: Bomb
 Rows of state-of-the-art computers line the room, with happy young people typing
 merrily away at several of them. They look up and wave hello to you.

@@ -63,7 +63,7 @@ public class Item
 						start = verb.indexOf("[");
 						end = verb.indexOf("]");
 						events = verb.substring(start+1, end).split(",");
-						
+
 						v = new StringBuffer(verb);
 						verb = v.replace(start, end+1, "").toString();
 						for(String i: events)
@@ -200,7 +200,7 @@ public class Item
 	{
 		disappear.get(verb).execute();
 	}
-	
+
 	/**
 	 * Gets item's name
 	 * @return item name
