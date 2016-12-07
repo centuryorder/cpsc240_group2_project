@@ -326,7 +326,10 @@ public class Room {
 		}
 		return null;
 	}
-
+    void unlocked(Exit exit, Command use)
+	{
+		exits.add(exit);
+	}
 	void addExit(Exit exit) {
 		exits.add(exit);
 	}
