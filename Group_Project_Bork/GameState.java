@@ -33,7 +33,7 @@ public class GameState {
 	//Adventurer Status
 	private int HP = 100, Armor, Speed = 10, Damage, currentWeight = 0;
 	private int Score;
-	private final int MAXWEIGHT = 75;
+	private final int MAXWEIGHT = 55;
 	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
 	private HashMap<String, Item> equipment = new HashMap<String, Item>();
 	private boolean twoHand;
@@ -101,6 +101,7 @@ public class GameState {
 			{
 				for(String i:content)
 				{
+					if(!i.equals(""))
 					this.addToInventory(dungeon.getItem(i));
 				}
 			}
@@ -200,11 +201,7 @@ public class GameState {
 	void addToInventory(Item item)
 	{
 		this.inventory.add(item);
-		currentWeight = 0;
-		for (Item current: inventory)
-		{
-			currentWeight += current.getWeight();
-		}
+		currentWeight += item.getWeight();
 	}
 
 	/**
@@ -214,11 +211,7 @@ public class GameState {
 	void removeFromInventory(Item item)
 	{
 		this.inventory.remove(item);
-		currentWeight = 0;
-		for (Item current: inventory)
-		{
-			currentWeight += current.getWeight();
-		}
+		currentWeight -= item.getWeight();
 	}
 
 	Item getItemInVicinityNamed(String name) throws Item.NoItemException

@@ -1,0 +1,29 @@
+Group Bork v3.0 save data
+Dungeon file: trinkleG3b-1.bork
+Room states:
+Stephen's office:
+beenHere=false
+Contents: StarWarsToy,WawaTravelMug,donut
+NPC: 
+---
+Basement hallway:
+beenHere=true
+Contents: DrPepper
+NPC: 
+---
+Room B13:
+beenHere=true
+Contents: Bomb
+NPC: 
+---
+Rotunda balcony:
+beenHere=false
+Contents: chainsaw,magicWand
+NPC: 
+---
+===
+Adventurer:
+Current room: Room B13
+Inventory: 
+HP: 100
+Weight: 0

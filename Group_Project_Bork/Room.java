@@ -91,6 +91,8 @@ public class Room {
 			header = contents[0].trim()+":";
 			if(contents.length > 1 && header.equals(Dungeon.ROOM_CONTENTS_MARKER))
 			{
+				if(initState != false)
+				{
 					String[] content = contents[1].split(",");
 					for(String item: content) 
 					{	
@@ -99,6 +101,7 @@ public class Room {
 						else
 							this.add(d.getItem(item.trim()));
 					}
+				}
 				lineOfDesc =s.nextLine();
 				while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
 						!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
@@ -184,6 +187,17 @@ public class Room {
 				count++;
 			}
 			w.println(Dungeon.ROOM_CONTENTS_MARKER+ " " + c);
+			count = 1;
+			c="";
+			for(NPC i: this.NPC)
+			{
+				if(count < this.NPC.size())
+					c += i.getName()+",";
+				else
+					c += i.getName();
+				count++;
+			}
+			w.println(Dungeon.ROOM_NPC_MARKER+ " " + c);
 			w.println(Dungeon.SECOND_LEVEL_DELIM);
 		}
 	}
@@ -212,9 +226,15 @@ public class Room {
 		if (!line.equals(Dungeon.SECOND_LEVEL_DELIM)&& !line.equals(Dungeon.TOP_LEVEL_DELIM) && contents[0].equals(Dungeon.ROOM_CONTENTS_MARKER))
 		{
 			i =contents[1].split(",");
-			if (d.getInitState() ==false)
+			if (d.getInitState() == false)
 				for(String it: i)
 					this.add(d.getItem(it));
+			line =s.nextLine();
+			contents = line.split(":");
+			i =contents[1].split(",");
+			if (d.getInitState() == false)
+				for(String n:i)
+					this.addNPC(d.getNPC(n.trim()));
 			s.nextLine();   // consume end-of-room delimiter
 		}
 
