@@ -21,6 +21,7 @@ public class Room {
 	private ArrayList<NPC> NPC;
 	private boolean light;
 	private boolean hideName;
+	private boolean locked;
 
 	Room(String title) {
 		init();
@@ -163,6 +164,8 @@ public class Room {
 	}
 
 	String getTitle() { return title; }
+
+    public boolean getLock(boolean locked){return locked;}
 
 	void setDesc(String desc) { this.desc = desc; }
 
