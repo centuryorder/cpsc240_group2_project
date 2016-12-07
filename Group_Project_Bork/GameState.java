@@ -6,7 +6,7 @@ import java.io.*;
  * Class that keep track the status of the game and adventurer
  * @author Yohan Hendrawan
  * @author Stephen Willson
- * @version 12/05/2016
+ * @version 12/07/2016
  */
 public class GameState {
 
@@ -31,16 +31,16 @@ public class GameState {
 
 	//Adventurer Status
 	private int HP = 100, Armor, Speed = 10, Damage, currentWeight = 0;
-	private int Score;
+	private int Score, TimeSpan;
 	private final int MAXWEIGHT = 55;
 	private Item headGear, chestGear,legGear, accessoryOne, accessoryTwo, rightHand, leftHand;
 	private HashMap<String, Item> equipment = new HashMap<String, Item>();
 	private boolean twoHand;
 	private Timer timer;
-	private TimerTask daylight;
 	private Combat currentCombat;
 	private ArrayList<Wound> wound= new ArrayList<Wound>();	
 	private Hashtable<Integer,String> Rank;
+	private boolean verboseMode = false;
 
 	/**
 	 * instance is a singleton 
@@ -57,7 +57,8 @@ public class GameState {
 		this.equipment.put("head", null);
 		this.equipment.put("chest", null);
 		this.equipment.put("leg", null);
-
+		this.timer = new Timer();
+		this.timer.schedule(new addTimeSpan(), 0, 1*1000);
 	}
 
 	/**
@@ -101,14 +102,16 @@ public class GameState {
 				for(String i:content)
 				{
 					if(!i.equals(""))
-					this.addToInventory(dungeon.getItem(i));
+						this.addToInventory(dungeon.getItem(i));
 				}
 			}
 		}
 		String[] HP = s.nextLine().split(":");
-		int hp = Integer.parseInt(HP[1].trim());
 		if (HP[0].trim().equals("HP"))
+		{
+			int hp = Integer.parseInt(HP[1].trim());
 			this.setHp(hp);
+		}
 		//System.out.println(this.HP);
 	}
 
@@ -271,15 +274,24 @@ public class GameState {
 	public void removeItemFromEquipped(Item item){
 
 	}
+	class addTimeSpan extends TimerTask{
+		public void run()
+		{
+			TimeSpan += 1;
+			if((TimeSpan % 60000) == 0)
+			{
+				GameState.instance().changeRoomLighting();
+			}
+		}
+	}
 	/**
 	 * Changes some room lighting using a timer.
 	 * If its on it turn it off and vice versa.
 	 */
-	void changeRoomLighting(){
-
+	public void changeRoomLighting(){
 	}
 	/**
-	 * Take in the damage that is calculated by during combat
+	 * Take in the damage that is calculated
 	 * @param wound 
 	 */
 	public void recieveWound(Wound wound){
@@ -344,19 +356,19 @@ public class GameState {
 		}
 		else
 		{
-			if (this.Score > 0 && this.Score <= 10)
+			if (this.Score > 0 && this.Score <= 100)
 			{
 				return "Curious Person";
 			}
-			else if (this.Score >10 && this.Score <= 30)
+			else if (this.Score >10 && this.Score <= 300)
 			{
 				return "Adventurer";
 			}
-			else if (this.Score > 30 && this.Score <= 90)
+			else if (this.Score > 30 && this.Score <= 900)
 			{
 				return "Explorer";
 			}
-			else if( this.Score >90)
+			else if( this.Score >900)
 			{
 				return "Beater";
 			}
@@ -387,5 +399,31 @@ public class GameState {
 	public int getHP()
 	{
 		return this.HP;
+	}
+
+	public boolean getVerbose()
+	{
+		return this.verboseMode;
+	}
+
+	public void setVerbose()
+	{
+		if(verboseMode == false)
+		{
+			verboseMode = true;
+		}
+		else
+			verboseMode = false;
+	}
+	public String getTimeSpan()
+	{
+		String Time="";
+		int conv = (60*60);
+		int Hours = TimeSpan / conv;
+		int Minutes = ((TimeSpan-(Hours*conv)) % conv / (60));
+		int Seconds = ((TimeSpan-(Hours*conv)-(Minutes*60))% conv);
+		Time = "".format("%02d:%02d:%02d", Hours, Minutes, Seconds);
+		return Time;
+		
 	}
 }

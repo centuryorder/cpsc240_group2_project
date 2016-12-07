@@ -19,7 +19,8 @@ public class Room {
 	private ArrayList<Exit> exits;
 	private ArrayList<Item> items;
 	private ArrayList<NPC> NPC;
-	private boolean light;
+	private boolean lightable = false;
+	private boolean light = true;
 	private boolean hideName;
 	private boolean locked;
 
@@ -176,7 +177,7 @@ public class Room {
 	void storeState(PrintWriter w) throws IOException {
 		// At this point, nothing to save for this room if the user hasn't
 		// visited it.
-		if (!this.items.isEmpty()) {
+		if (this.beenHere) {
 			w.println(title + ":");
 			w.println("beenHere="+this.beenHere);
 			String c ="";
@@ -287,10 +288,15 @@ public class Room {
 				count++;
 			}
 		}
-		//for (Exit exit : exits) {
-		//	description += "\n" + exit.describe();
-		//}
+		if(!GameState.instance().getVerbose())
+		{
+			for (Exit exit : exits) {
+				description += "\n" + exit.describe();
+			}
+		}
 		beenHere = true;
+		if (!light)
+			description = "It's to dark to see.";
 		return description;
 	}
 
@@ -310,6 +316,15 @@ public class Room {
 				dsc = title + desc;
 		}
 		int count=0;
+		for (NPC i: NPC)
+		{   
+			if(count < NPC.size())
+				dsc += " There is a "+i+". ";
+			else
+				dsc += "There is a "+i+".";
+			count++;
+		}
+		count = 0;
 		for (Item item: items)
 		{   
 			if(count < items.size())
@@ -318,6 +333,14 @@ public class Room {
 				dsc += "There is a "+item+".";
 			count++;
 		}
+		if(!GameState.instance().getVerbose())
+		{
+			for (Exit exit : exits) {
+				dsc += "\n" + exit.describe();
+			}
+		}
+		if (!light)
+			dsc = "It's to dark to see.";
 		return dsc+"\n";
 	}
 
@@ -329,10 +352,7 @@ public class Room {
 		}
 		return null;
 	}
-    void unlocked(Exit exit, Command use)
-	{
-		exits.add(exit);
-	}
+
 	void addExit(Exit exit) {
 		exits.add(exit);
 	}
@@ -393,18 +413,26 @@ public class Room {
 		}
 		return temp;
 	}
+	public boolean getLightable()
+	{
+		return lightable;
+	}
+	public void setLightable(boolean status)
+	{
+		this.lightable = status;
+	}
 	/**
 	 * Change the room lighting.
 	 * @param status take in the status
 	 */
 	public void setLight(boolean status){
-
+		this.light = status;
 	}
 	/**
 	 * Use when the trigger event happen to show the room title
 	 * @param status take in the status
 	 */
 	public void setHideName(boolean status){
-
+		this.hideName = status;
 	}
 }

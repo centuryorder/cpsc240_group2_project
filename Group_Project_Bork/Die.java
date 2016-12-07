@@ -10,6 +10,7 @@ package Group_Project_Bork;
 public class Die extends Event{
 	int Score = 0;
 	String Rank= "";
+	String Time = "";
 	NPC npc = null;
 	/**
 	 * Constructor
@@ -36,6 +37,9 @@ public class Die extends Event{
 	void getRank(){
 		Rank = GameState.instance().getRank();
 	}
+	void getTime(){
+		Time = GameState.instance().getTimeSpan();
+	}
 	/**
 	 * Remove NPC
 	 */
@@ -53,7 +57,8 @@ public class Die extends Event{
 		{
 			getScore();
 			getRank();
-			System.out.printf("GAMEOVER!%nScore: %d Rank: %s",Score, Rank);
+			getTime();
+			System.out.printf("GAMEOVER!%nScore: %d Rank: %s Time: %s",Score, Rank,Time);
 			System.exit(0);
 		}
 			
