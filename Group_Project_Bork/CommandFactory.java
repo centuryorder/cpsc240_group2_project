@@ -58,6 +58,8 @@ public class CommandFactory {
 		if (MOVEMENT_COMMANDS.contains(verb)) {
 			return new MovementCommand(verb);
 		} 
+		else if (verb.equals("verbose"))
+			return new VerboseCommand();
 		else if (SAVE_COMMANDS.contains(verb)) {
 			return new SaveCommand(noun);
 		}
