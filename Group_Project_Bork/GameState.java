@@ -15,7 +15,6 @@ public class GameState {
 			super(e);
 		}
 	}
-
 	static String DEFAULT_SAVE_FILE = "bork_save";
 	static String SAVE_FILE_EXTENSION = ".sav";
 	static String SAVE_FILE_VERSION = "Group Bork v3.0 save data";

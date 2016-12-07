@@ -132,10 +132,8 @@ public class Dungeon {
 			}
 		}
 		catch(Item.NoItemException e){}
-		if (!s.nextLine().equals(NPC_MARKER)) {
-			throw new IllegalDungeonFormatException("No '" +
-					NPC_MARKER + "' line where expected.");
-		}
+		String line = s.nextLine();
+		if (line.equals(NPC_MARKER)) {
 		try {
 			while(true)
 			{
@@ -143,7 +141,8 @@ public class Dungeon {
 			} 
 		}catch (NoNPCException e) {}
 		// Throw away Rooms starter.
-		if (!s.nextLine().equals(ROOMS_MARKER)) {
+		line = s.nextLine();
+		if (!line.equals(ROOMS_MARKER)) {
 			throw new IllegalDungeonFormatException("No '" +
 					ROOMS_MARKER + "' line where expected.");
 		}
@@ -158,7 +157,7 @@ public class Dungeon {
 		}
 		catch(Room.NoRoomException | NoNPCException e){}
 		// Throw away Exits starter.
-		String line = s.nextLine();
+		line = s.nextLine();
 		if (!line.equals(EXITS_MARKER)) {
 			throw new IllegalDungeonFormatException("No '" +
 					EXITS_MARKER + "' line where expected.");
@@ -169,7 +168,34 @@ public class Dungeon {
 				Exit exit = new Exit(s, this);
 			}
 		} catch (Exit.NoExitException e) {  /* end of exits */ }
-
+		}
+		else
+			if (!line.equals(ROOMS_MARKER)) {
+				throw new IllegalDungeonFormatException("No '" +
+						ROOMS_MARKER + "' line where expected.");
+			}
+			try {
+				// Instantiate and add first room (the entry).
+				entry = new Room(s, this, initState);
+				add(entry);
+				// Instantiate and add other rooms.
+				while (true) {
+					add(new Room(s, this, initState));
+				}
+			}
+			catch(Room.NoRoomException | NoNPCException e){}
+			// Throw away Exits starter.
+			line = s.nextLine();
+			if (!line.equals(EXITS_MARKER)) {
+				throw new IllegalDungeonFormatException("No '" +
+						EXITS_MARKER + "' line where expected.");
+			}
+			try {
+				// Instantiate exits.
+				while (true) {
+					Exit exit = new Exit(s, this);
+				}
+			} catch (Exit.NoExitException e) {  /* end of exits */ }
 		s.close();
 	}
 
