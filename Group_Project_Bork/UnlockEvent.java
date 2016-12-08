@@ -5,6 +5,10 @@ import java.util.*;
 */
 public abstract class UnlockEvent extends Event {
 private boolean locked;
+    private Hashtable<String, Exit> key;
 
-//
-}
+    public UnlockEvent()
+    {
+
+    }
+   }
