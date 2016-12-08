@@ -1,44 +1,24 @@
 # cpsc240_group2_project
 Section 1 Group 3
 
-Version 3a
+Version 3b
 
-Group members: Yohan Hendawan, Stephen Wilson, and Matthew Aneiro
+Group members: Yohan Hendawan and Stephen Wilson
 
 Java files should be Package under: Group_Project_Bork.
 
-Java Files to be done: (Add "X " when done)
+Supplemental Features:
 
-X AttackCommand.java
+External Clock(+5pt): Working. Keeps elapsed time since the game started and print it out when player die or win. Every 10 minutes the clock also change the daytime/nighttime.
 
-X Combat.java
+Verbose Mode(+2pt): Working. Allow user to type "verbose" to toggle exits on and off.
 
-X CommandFactory.java
+NPC(+20pt): Working. NPC exist in the dungeon. You can only talk to them. When they die they drop what they are carrying.
 
-X CraftingCommand.java
+Light(+??): Working. Every room have a light. If light is off description is change to "It's to dark to see." If player have a light source they can see the room normally.
 
-X Die.java
+Look(+??): Working. User can look into the room to see what is there.
 
-X Dissapear.java
+Combat(+25pt): Scrapped!
 
-X Dungeon.java
-
-X GameState.java
-
-X Item.java
-
-X NPC.java
-
-X Room.java
-
-X RoomSpecificItemCommand.java
-
-X Teleport.java
-
-X TeleportCommand.java
-
-X Transform.java
-
-X Win.java
-
-X Wound.java
+Locked Doors(+15pt): Not working yet.
