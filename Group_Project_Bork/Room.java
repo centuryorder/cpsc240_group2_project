@@ -22,7 +22,7 @@ public class Room {
 	private boolean lightable = false;
 	private boolean light = true;
 	private boolean hideName;
-	private boolean locked;
+
 
 	Room(String title) {
 		init();
@@ -37,6 +37,17 @@ public class Room {
         @throws IllegalDungeonFormatException A structural problem with the
         dungeon file itself, detected when trying to read this room.
 	 */
+
+	public Exit getExit(String dir)
+	{
+		for(Exit current: exits)
+		{
+			if (current.getDir().equals(dir)) {
+				return current;
+			}
+		}
+		return null;
+	}
 	Room(Scanner s) throws NoRoomException,
 	Dungeon.IllegalDungeonFormatException {
 
@@ -166,7 +177,7 @@ public class Room {
 
 	String getTitle() { return title; }
 
-    public boolean getLock(boolean locked){return locked;}
+
 
 	void setDesc(String desc) { this.desc = desc; }
 
