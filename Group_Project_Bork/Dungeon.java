@@ -292,5 +292,16 @@ public class Dungeon {
 		Set<String> rm = rooms.keySet();
 		return rm;
 	}
+	public void changeRoomLighting(){
+		Set<String> rm = rooms.keySet();
+		for(String key:rm)
+		{
+			if(rooms.get(key).getLightable() == true)
+				if (rooms.get(key).getLight() == true)
+					rooms.get(key).setLight(false);
+				else
+					rooms.get(key).setLight(true);
+		}
+	}
 
 }

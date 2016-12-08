@@ -293,8 +293,11 @@ public class Room {
 			}
 		}
 		beenHere = true;
+		String temp = description;
 		if (!light)
 			description = "It's to dark to see.";
+		else if(GameState.instance().getLight() == true)
+			description = temp;
 		return description;
 	}
 
@@ -337,8 +340,11 @@ public class Room {
 				dsc += "\n" + exit.describe();
 			}
 		}
+		String temp = dsc;
 		if (!light)
 			dsc = "It's to dark to see.";
+		else if(GameState.instance().getLight() == true)
+			dsc = temp;
 		return dsc+"\n";
 	}
 
@@ -425,6 +431,10 @@ public class Room {
 	 */
 	public void setLight(boolean status){
 		this.light = status;
+	}
+	public boolean getLight()
+	{
+		return this.light;
 	}
 	/**
 	 * Use when the trigger event happen to show the room title

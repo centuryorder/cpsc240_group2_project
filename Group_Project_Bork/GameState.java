@@ -39,7 +39,8 @@ public class GameState {
 	private Timer timer;
 	private Combat currentCombat;
 	private ArrayList<Wound> wound= new ArrayList<Wound>();	
-	private Hashtable<Integer,String> Rank;
+	private Hashtable<Integer,String> Rank; 
+	private boolean light = false;
 	private boolean verboseMode = false;
 
 	/**
@@ -203,6 +204,8 @@ public class GameState {
 	void addToInventory(Item item)
 	{
 		this.inventory.add(item);
+		if(item.getLight() == true)
+			this.light = true;
 		currentWeight += item.getWeight();
 	}
 
@@ -289,6 +292,7 @@ public class GameState {
 	 * If its on it turn it off and vice versa.
 	 */
 	public void changeRoomLighting(){
+		instance().getDungeon().changeRoomLighting();
 	}
 	/**
 	 * Take in the damage that is calculated
@@ -425,5 +429,9 @@ public class GameState {
 		Time = "".format("%02d:%02d:%02d", Hours, Minutes, Seconds);
 		return Time;
 		
+	}
+	public boolean getLight()
+	{
+		return this.light;
 	}
 }

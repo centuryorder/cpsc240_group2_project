@@ -3,7 +3,6 @@ import java.util.*;
 
 /**
  * Object class that hold items properties
- * @author Matthew Aneiro
  * @author Yohan Hendrawan
  * @version 11/21/2016
  */
@@ -338,5 +337,8 @@ public class Item
 	private void setWeight(int weight)
 	{
 		this.weight = weight;
+	}
+	public boolean getLight(){
+		return this.light;
 	}
 }

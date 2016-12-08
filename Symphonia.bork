@@ -2,21 +2,59 @@ Symphonia
 Group Bork v1.0
 ===
 Items:
+CircularTabletEmpty
+1
+examine: An ancient tablet with unknown symbols. There are four different holes thats empty.
+---
+CircularTablet1Gem
+2
+examine: An ancient tablet with unknown symbols. One of the hole have a red glowing  gem .
+---
+CircularTablet2Gem
+3
+examine: An ancient tablet with unknown symbols. Two of the hole have glowing red and green gem.
+---
+CircularTablet3Gem
+4
+examine: An ancient tablet with unknown symbols. Three of the hole have glowing red, green, and yellow gem.
+---
+CircularTabletComplete
+5
+examine: An ancient tablet with unknown symbols. The tablet is endowed with four gems.
+Use[RoomItemEvent(CircularTabletComplete Tower_Entrance Win)]: The tablet fit on the tower door.
+---
+RedGem
+1
+use[Transform(CircularTabletEmpty CircularTablet1Gem),Score(10)]: You try to insert the gem into the tablet. The gem glow when you found the right spot.
+---
+GreenGem
+1
+use[Transform(CircularTablet1Gem CircularTablet2Gem)],Score(20): You try to insert the gem into the tablet. The gem glow when you found the right spot.
+---
+YellowGem
+1
+use[Transform(CircularTablet2Gem CircularTablet3Gem)],Score(30): You try to insert the gem into the tablet. The gem glow when you found the right spot.
+---
+BlueGem
+1
+use[Transform(CircularTablet3Gem CircularTabletComplete),Score(40)]: You try to insert the gem into the tablet. You filled the last slot. The tablet is complete.
+---
 GlowingCrystal
 1000
 LightSource:true
 ---
 GlowingCrystalFragment
 5
-LightSource:true 
+LightSource:true
+examine: A glowing white crystal fragment.
 ---
 KeyHandle
 1
-Use[Transform(KeyHead, SkeletonKey),Score(100),Disappear]: You made a SkeletonKey
+Use[Transform(KeyHead SkeletonKey),Score(100),Disappear]: You made a SkeletonKey
 ---
 KeyHead
 1
-Use[Transform(KeyHandle, Skeletonkey),Score(100),Disappear]: You made a SkeletonKey
+Use[Transform(KeyHandle Skeletonkey),Score(100),Disappear]: You made a SkeletonKey
 ---
 SkeletonKey
 2
@@ -24,11 +62,12 @@ Use[Unlock]:It opens anything!
 ---
 DoorKey
 2
-Use[Unlock(n,Temple):
+break[Transform(keyHandle),Disappear]: You break the key in half
+Use[Unlock(n Temple)]: Temple door open
 ---
 Pickaxe
 15
-Use[RoomEvent(GlowingCrystal, GlowingCystalFrament),Score(100)]: You mine the GlowingCrystal and got a fragment.
+Use[Transform(GlowingCrystal GlowingCystalFrament),Score(100)]: You mine the GlowingCrystal. The glowing crystal shattered and you took one fragment.
 ---
 EasterEgg
 1
@@ -46,10 +85,31 @@ HP:1000
 armor:0
 talk[Die(Mysterious Man)]:Welcome To Nightmare! He threw a smoke bomb and disappear!
 ---
+Ghost Man
+HP:1000
+armor:0
+talk[Die(Ghost Man),Score(10)]: Take the RedGem, it will help you! He slowly disappear!
+---
+Ghost Lady
+HP:1000
+armor:0
+talk[Die(Ghost Lady),Score(10)]:You have been bound to this place! The BlueGem will help you! She slowly disappear.
+---
+Ghost Warrior
+HP:1000
+armor:0
+talk[Die(Ghost Warrior),Score(10)]:Our people fell, but you may have a chance. There is a gem on other side find it. The YellowGem will help you! He slowly Disappear.
+---
+Ghost Priest
+HP:1000
+armor:0
+talk[Die(Ghost Priest),Score(10)]:Some thing that can help you is hidden in the forest. The GreenGem will help you! She slowly Disappear.
+---
 ===
 Rooms:
 Temple
 NPC: Mysterious Man
+Contents: CircularTabletEmpty
 You are inside what look like a temple.
 You see a circular platform with unknown engraving on one end of the temple.
 You see strange glowing crystals on the wall lighting the temple.
@@ -67,6 +127,8 @@ A strange symbol etched to the top of the path entrance to the south.
 The sound of the waterfall echoed throughout. There is a path to the east.
 ---
 Lake
+NPC: Ghost Lady
+Contents: BlueGem
 You see a lake surrounded by a cliff and a forest.
 The water is clear and a waterfall fall from the top of the cliff.
 There is a path going to the west and up the cliff.
@@ -79,6 +141,8 @@ bottom of the cliff. You see a forest with a tower in the middle. There is a pat
 running beside the river.
 ---
 Southern Forest
+NPC: Ghost Priest
+Contents:GreenGem
 You are surrounded by tree. You hear birds chirping.
 ---
 Eastern Forest
@@ -94,9 +158,34 @@ There is a cliff wall with what seems to be a cave opening.
 The cave opening is unreachable from here.
 ---
 Tower Entrance
+NPC: Ghost Man
+Contents: RedGem
 You see a tower that seems to reach pass the sky. There is a door with ornate strange
 symbols. There is a circular indentation at the middle of the door with a strange
 symbol.
+---
+Southern River Path
+NPC: Ghost Warrior
+A path beside the river. You hear the water flowing faster. 
+You see a house on the other side of the river.
+---
+South Western River Path
+There is a bridge crossing the river to the north.
+There is path to the east.
+---
+North Western River Path
+There is a bridge crossing the river to the south.
+There is a path to the east.
+---
+Northern River Path
+Contents:YellowGem
+There is an old house. The house is wrecked.
+There is a path to the west.
+---
+Bridge
+The bridge crossed over the river. 
+You can fell the bridge vibrate as the water flow through the support.
+You see a water wheel to the west.
 ---
 ===
 Exits:
@@ -111,6 +200,10 @@ Temple
 Crystal Cave
 n
 Behind Waterfall
+---
+Behind Waterfall
+s
+Crystal Cave
 ---
 Behind Waterfall
 e
@@ -175,5 +268,45 @@ Eastern Forest
 Northern Forest
 w
 Western Forest
+---
+Cliff
+s
+Southern River Path
+---
+Southern River Path
+n
+Cliff
+---
+Southern River Path
+w
+South Western River Path
+---
+South Western River Path
+e
+Southern River Path
+---
+South Western River Path
+n
+Bridge
+---
+Bridge
+s
+South Western River Path
+---
+Bridge
+n
+North Western River Path
+---
+North Western River Path
+s
+Bridge
+---
+North Western River Path
+e
+Northern River Path
+---
+Northern River Path
+w
+North Western River Path
 ---
 ===
