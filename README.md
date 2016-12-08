@@ -15,10 +15,12 @@ Verbose Mode(+2pt): Working. Allow user to type "verbose" to toggle exits on and
 
 NPC(+20pt): Working. NPC exist in the dungeon. You can only talk to them. When they die they drop what they are carrying.
 
-Light(+??): Working. Every room have a light. If light is off description is change to "It's to dark to see." If player have a light source they can see the room normally.
+Light(+??): Working. Every room have a light. If light is off description is change to "It's to dark to see." If player have a light source they can see the room normally. Triggered by time.
 
 Look(+??): Working. User can look into the room to see what is there.
 
 Combat(+25pt): Scrapped!
 
-Locked Doors(+15pt): Not working yet.
+Locked Doors(+15pt): Scrapped!
+
+Crafting (+??): Some item can be combine to make a new item.
