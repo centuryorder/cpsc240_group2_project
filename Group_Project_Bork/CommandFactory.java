@@ -14,7 +14,8 @@ public class CommandFactory {
 			Arrays.asList("save");
 	public static List<String> ITEM_COMMANDS =
 			Arrays.asList("take","drop","i","eat","drink","break","shake",
-					"touch", "kick", "detonate", "recycle","stomp", "wave", "refill");
+					"touch", "kick", "detonate", "recycle","stomp", "wave",
+					"refill", "examine", "use");
 	public static List<String> NPC_COMMANDS = Arrays.asList("talk");
 	public static List<String> STATUS_COMMANDS =
 			Arrays.asList("score","health", "look");
@@ -43,9 +44,10 @@ public class CommandFactory {
 	 * @return a Command class to generate appropriate action
 	 */
 	public Command parse(String command) {
-		String[] c = command.split(" ");
+		String[] c = command.split(" ",4);
 		String verb= c[0].toLowerCase();
 		String noun = "";
+		String noun2 ="";
 		if (c.length > 1 && c.length <= 2)
 		{
 			noun = c[1];
@@ -54,10 +56,18 @@ public class CommandFactory {
 		{
 			noun = c[2]+" "+c[3];
 		}
-
+		else if(c.length > 2 && c[0].equals("use"))
+		{
+			noun = c[1];
+			noun2 = c[3];
+		}
 		if (MOVEMENT_COMMANDS.contains(verb)) {
 			return new MovementCommand(verb);
-		} 
+		}
+		//else if(verb.equals("use") && c[4].equals("door"))
+		//{
+		//return new UnlockCommand();
+		//}
 		else if (verb.equals("verbose"))
 			return new VerboseCommand();
 		else if (SAVE_COMMANDS.contains(verb)) {
@@ -82,12 +92,16 @@ public class CommandFactory {
 				return new TakeCommand(verb , noun);
 			else if(verb.equals("drop"))
 				return new DropCommand(verb,noun);
+			else if(!noun2.equals(""))
+			{
+				return new CraftingCommand(noun,verb,noun2);
+			}
 			else
 				return new ItemSpecificCommand(verb, noun);
 		}
 		else if (ITEM_COMMANDS.contains(verb) && noun.equals("")){
 			if(verb.equals("i"))
-					return new InventoryCommand(verb);
+				return new InventoryCommand(verb);
 			else
 				return new UnknownCommand(verb);
 		}

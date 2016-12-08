@@ -9,7 +9,7 @@ package Group_Project_Bork;
 public class Win extends Event{
 	int score;
 	int Score = 0;
-	String Rank= "";
+	String Rank= "", Time="";
 	/**
 	 * Constructor
 	 */
@@ -27,6 +27,9 @@ public class Win extends Event{
 	void getRank(){
 		Rank = GameState.instance().getRank();
 	}
+	void getTime(){
+		Time = GameState.instance().getTimeSpan();
+	}
 	/**
 	 * Execute Win event
 	 */
@@ -34,8 +37,9 @@ public class Win extends Event{
 	{
 		getScore();
 		getRank();
-		System.out.printf("You Win!%nScore: %d Rank: %s",Score, Rank);
-
+		getTime();
+		System.out.printf("GAMEOVER!%nScore: %d Rank: %s Time: %s",Score, Rank,Time);
+		System.out.println("One journey end and another begin.");
 		System.exit(0);
 	}
 }

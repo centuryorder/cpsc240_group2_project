@@ -13,7 +13,7 @@ public class Exit {
 
     private String dir;
     private Room src, dest;
-    private boolean lock= false;
+
     Exit(String dir, Room src, Room dest) {
         init();
         this.dir = dir;
@@ -34,13 +34,6 @@ public class Exit {
         @throws IllegalDungeonFormatException A structural problem with the
         dungeon file itself, detected when trying to read this room.
      */
-    public void setLock(boolean status)
-    {
-        this.lock = status;
-    }
-    public boolean getLock(){return this.lock;}
-
-
     Exit(Scanner s, Dungeon d) throws NoExitException,
         Dungeon.IllegalDungeonFormatException {
 

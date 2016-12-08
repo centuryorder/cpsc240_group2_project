@@ -5,7 +5,7 @@ package Group_Project_Bork;
  * @version 11/9/16.
  */
 public class CraftingCommand extends Command {
-	String noun;
+	String noun, noun2;
 	String verb;
 	String target;
 
@@ -17,9 +17,9 @@ public class CraftingCommand extends Command {
 	 */
 	public CraftingCommand (String noun, String verb, String target)
 	{
-		this.verb = verb;
-		this.noun = noun;
-		this.target = target;
+		this.verb = verb.trim();
+		this.noun = noun.trim();
+		this.target = target.trim();
 	}
 
 	/**
@@ -28,24 +28,21 @@ public class CraftingCommand extends Command {
 	public String execute() {
 
 		String msg ="Can't do that.";
-		Item tempI;
+		Item tempI,tempV,tempT;
 		try {
 			tempI = GameState.instance().getItemFromInventoryNamed(noun);
-			Item tempV= GameState.instance().getItemInVicinityNamed(noun);
-			if (verb.equals("transform"))
+			tempV= GameState.instance().getItemInVicinityNamed(noun);
+			tempT = GameState.instance().getItemInVicinityNamed(target);
+			if(tempV != null)
 			{
-				if(tempV != null)
-				{
-					msg = tempV.getMessageForVerb(verb);
-					GameState.instance().getAdventurersCurrentRoom().remove(tempV);
-				}
-				else if(tempI != null)
-				{
-					msg = tempI.getMessageForVerb(verb);
-					GameState.instance().removeFromInventory(tempI);
-				}
+				msg = tempV.getMessageForVerb(verb);
+				//GameState.instance().removeFromInventory(tempI);
 			}
-
+			else if(tempI != null)
+			{
+				msg = tempI.getMessageForVerb(verb);
+				//GameState.instance().removeFromInventory(tempI);
+			}
 		} catch (Item.NoItemException e) {
 			e.printStackTrace();
 		}
@@ -55,5 +52,4 @@ public class CraftingCommand extends Command {
 		else
 			return "Can't "+verb+" "+noun+".\n";
 	}
-
 }

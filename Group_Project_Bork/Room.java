@@ -23,7 +23,6 @@ public class Room {
 	private boolean light = true;
 	private boolean hideName;
 
-
 	Room(String title) {
 		init();
 		this.title = title;
@@ -37,27 +36,16 @@ public class Room {
         @throws IllegalDungeonFormatException A structural problem with the
         dungeon file itself, detected when trying to read this room.
 	 */
-
-	public Exit getExit(String dir)
-	{
-		for(Exit current: exits)
-		{
-			if (current.getDir().equals(dir)) {
-				return current;
-			}
-		}
-		return null;
-	}
 	Room(Scanner s) throws NoRoomException,
 	Dungeon.IllegalDungeonFormatException {
 
 		init();
+		String line = s.nextLine();
 		title = s.nextLine();
 		desc = "";
-		if (title.equals(Dungeon.TOP_LEVEL_DELIM)) {
+		if (title.trim().equals(Dungeon.TOP_LEVEL_DELIM)) {
 			throw new NoRoomException();
 		}
-
 		String lineOfDesc = s.nextLine();
 		while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
 				!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
@@ -79,12 +67,13 @@ public class Room {
 	public Room(Scanner s, Dungeon d, boolean initState) throws NoRoomException,
 	Dungeon.IllegalDungeonFormatException, Item.NoItemException, NoNPCException
 	{
-		init();
+		
 		title = s.nextLine();
 		desc = "";
 		if (title.equals(Dungeon.TOP_LEVEL_DELIM)) {
 			throw new NoRoomException();
 		}
+		init();
 		String lineOfDesc = s.nextLine();
 		String[] contents = lineOfDesc.split(":");
 		String header = contents[0].trim()+":";
@@ -176,8 +165,6 @@ public class Room {
 	}
 
 	String getTitle() { return title; }
-
-
 
 	void setDesc(String desc) { this.desc = desc; }
 
@@ -285,7 +272,7 @@ public class Room {
 			for (NPC i: NPC)
 			{   
 				if(count < NPC.size())
-					description += " There is a "+i+". ";
+					description += "\nThere is a "+i+". ";
 				else
 					description += "There is a "+i+".";
 				count++;
@@ -330,7 +317,7 @@ public class Room {
 		for (NPC i: NPC)
 		{   
 			if(count < NPC.size())
-				dsc += " There is a "+i+". ";
+				dsc += "\nThere is a "+i+". ";
 			else
 				dsc += "There is a "+i+".";
 			count++;

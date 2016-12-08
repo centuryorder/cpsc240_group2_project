@@ -22,7 +22,7 @@ public class ItemSpecificCommand extends Command {
 			tempI = GameState.instance().getItemFromInventoryNamed(noun);
 			Item tempV= GameState.instance().getItemInVicinityNamed(noun);
 			if (verb.equals("eat")|| verb.equals("drink")|| verb.equals("break")||verb.equals("stomp")
-					||verb.equals("wave")||verb.equals("refill"))
+					||verb.equals("wave")||verb.equals("refill")||verb.equals("examine")||verb.equals("use"))
 			{
 				if(tempV != null)
 				{
@@ -64,5 +64,4 @@ public class ItemSpecificCommand extends Command {
 		else
 			return "Can't "+verb+" "+noun+".\n";
 	}
-
 }

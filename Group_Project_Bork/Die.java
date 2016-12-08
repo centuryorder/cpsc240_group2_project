@@ -52,7 +52,10 @@ public class Die extends Event{
 	public void execute()
 	{
 		if (npc != null)
+		{
 			removeNPC();
+			npc.dropInventory();
+		}
 		else
 		{
 			getScore();

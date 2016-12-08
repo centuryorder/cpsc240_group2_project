@@ -1,5 +1,6 @@
 package Group_Project_Bork;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -22,8 +23,8 @@ public class NPC {
 	private int armor;
 	private boolean hostile = false;
 	private boolean boss = false;
-	private  Hashtable<String,String> message = new Hashtable<String,String>();
-
+	private Hashtable<String,String> message = new Hashtable<String,String>();
+	private ArrayList<Item> inventory = new ArrayList<Item>();
 	private Hashtable<String, Wound> wound;
 	private Hashtable<String, Score> score;
 	private Hashtable<String, Die> die;
@@ -200,5 +201,12 @@ public class NPC {
 	public String toString()
 	{
 		return name;
+	}
+	public void dropInventory()
+	{
+		for(Item i:inventory)
+		{
+			GameState.instance().getAdventurersCurrentRoom().add(i);
+		}
 	}
 }
