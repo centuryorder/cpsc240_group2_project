@@ -25,7 +25,7 @@ public class Item
 	private Hashtable<String, Teleport> teleport;
 	private Hashtable<String, Disappear> disappear;
 	private Hashtable<String, Event> events;
-	private boolean light;
+	private boolean light = false;
 
 	/**
 	 * Item constructor

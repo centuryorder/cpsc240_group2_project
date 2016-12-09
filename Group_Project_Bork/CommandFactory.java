@@ -56,7 +56,7 @@ public class CommandFactory {
 		{
 			noun = c[2]+" "+c[3];
 		}
-		else if(c.length > 2 && c[0].equals("use"))
+		else if(c.length > 3 && c[0].equals("use"))
 		{
 			noun = c[1];
 			noun2 = c[3];

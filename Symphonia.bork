@@ -4,7 +4,7 @@ Group Bork v1.0
 Items:
 CircularTabletEmpty
 1
-examine: An ancient tablet with unknown symbols. There are four different holes thats empty.
+examine: An ancient tablet with unknown symbols. There are four different holes thats empty. A hole is glowing red.
 ---
 CircularTablet1Gem
 2
@@ -25,15 +25,15 @@ Use[RoomItemEvent(CircularTabletComplete Tower_Entrance Win)]: The tablet fit on
 ---
 RedGem
 1
-use[Transform(CircularTabletEmpty CircularTablet1Gem),Score(10)]: You try to insert the gem into the tablet. The gem glow when you found the right spot.
+use[Transform(CircularTabletEmpty CircularTablet1Gem),Score(10)]: You try to insert the gem into the tablet. Another hole glow green when you insert the gem.
 ---
 GreenGem
 1
-use[Transform(CircularTablet1Gem CircularTablet2Gem)],Score(20): You try to insert the gem into the tablet. The gem glow when you found the right spot.
+use[Transform(CircularTablet1Gem CircularTablet2Gem)],Score(20): You try to insert the gem into the tablet. Another hole glow y when you insert the gem.
 ---
 YellowGem
 1
-use[Transform(CircularTablet2Gem CircularTablet3Gem)],Score(30): You try to insert the gem into the tablet. The gem glow when you found the right spot.
+use[Transform(CircularTablet2Gem CircularTablet3Gem)],Score(30): You try to insert the gem into the tablet. Another hole glow blue when you insert the gem.
 ---
 BlueGem
 1
@@ -67,7 +67,7 @@ Use[Unlock(n Temple)]: Temple door open
 ---
 Pickaxe
 15
-Use[Transform(GlowingCrystal GlowingCystalFrament),Score(100)]: You mine the GlowingCrystal. The glowing crystal shattered and you took one fragment.
+use[Transform(GlowingCrystal GlowingCrystalFragment),Score(100)]: You mine the GlowingCrystal. The glowing crystal shattered and you took one fragment.
 ---
 EasterEgg
 1
@@ -108,56 +108,66 @@ talk[Die(Ghost Priest),Score(10)]:Some thing that can help you is hidden in the 
 ===
 Rooms:
 Temple
+Lightable:false
 NPC: Mysterious Man
-Contents: CircularTabletEmpty
+Contents: Pickaxe,CircularTabletEmpty
 You are inside what look like a temple.
-You see a circular platform with unknown engraving on one end of the temple.
+You see a circular platform with unknown engravings on one end of the temple.
 You see strange glowing crystals on the wall lighting the temple.
 There are six ornate marble pillars holding up the ceiling.
 There is an altar with two lit candles. A door way is wide open to the north.
 ---
 Crystal Cave
+Lightable:false
 Contents: GlowingCrystal
 You entered a giant cave. You can hear the sound of water echoing from a tunnel to
 the north. You see a temple inside the cave to the south. You see strange glowing
 crystals lighting the path to the temple.
 ---
 Behind Waterfall
+Lightable:false
 A strange symbol etched to the top of the path entrance to the south.
 The sound of the waterfall echoed throughout. There is a path to the east.
 ---
 Lake
+Lightable:true
 NPC: Ghost Lady
 Contents: BlueGem
 You see a lake surrounded by a cliff and a forest.
 The water is clear and a waterfall fall from the top of the cliff.
 There is a path going to the west and up the cliff.
-A forest surround the northern side with what look like a tower somewhere in the
-middle.
+A forest surround the northern side with what
+looks like a tower somewhere in themiddle.
 ---
 Cliff
+Lightable:true
 You can see a village in the horizon. You see a path going down to the lake at the
 bottom of the cliff. You see a forest with a tower in the middle. There is a path
 running beside the river.
 ---
 Southern Forest
+Lightable: true
 NPC: Ghost Priest
 Contents:GreenGem
 You are surrounded by tree. You hear birds chirping.
 ---
 Eastern Forest
+Lightable: true
 You are surrounded by tree. You hear birds chirping.
 ---
 Northern Forest
+Lightable: true
 Contents: EasterEgg
 You are surrounded by tree. You hear birds chirping.
 ---
 Western Forest
+Lightable: true
 You are surrounded by tree. You hear birds chirping.
 There is a cliff wall with what seems to be a cave opening.
 The cave opening is unreachable from here.
 ---
 Tower Entrance
+Lightable: true
 NPC: Ghost Man
 Contents: RedGem
 You see a tower that seems to reach pass the sky. There is a door with ornate strange
@@ -165,24 +175,30 @@ symbols. There is a circular indentation at the middle of the door with a strang
 symbol.
 ---
 Southern River Path
+Lightable: true
 NPC: Ghost Warrior
 A path beside the river. You hear the water flowing faster. 
 You see a house on the other side of the river.
+The path continues to the west.
 ---
 South Western River Path
+Lightable: true
 There is a bridge crossing the river to the north.
 There is path to the east.
 ---
 North Western River Path
+Lightable: true
 There is a bridge crossing the river to the south.
 There is a path to the east.
 ---
 Northern River Path
+Lightable: true
 Contents:YellowGem
 There is an old house. The house is wrecked.
 There is a path to the west.
 ---
 Bridge
+Lightable: true
 The bridge crossed over the river. 
 You can fell the bridge vibrate as the water flow through the support.
 You see a water wheel to the west.

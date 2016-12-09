@@ -114,6 +114,14 @@ public class GameState {
 			this.setHp(hp);
 		}
 		//System.out.println(this.HP);
+		String[] elapse = s.nextLine().split(":");
+		if(elapse[0].trim().equals("Elapse"))
+		{
+			int time = Integer.parseInt(elapse[1].trim());
+			this.TimeSpan = time;
+		}
+		
+		
 	}
 
 	void store() throws IOException {
@@ -153,6 +161,7 @@ public class GameState {
 			w.println(INVENTORY_LEADER);
 
 		w.println(HP_LEADER + this.HP);
+		w.println("Elapse:"+this.TimeSpan);
 		w.println(WEIGHT_LEADER + this.currentWeight);
 		w.close();
 	}

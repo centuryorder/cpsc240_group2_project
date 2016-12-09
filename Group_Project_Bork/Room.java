@@ -67,7 +67,7 @@ public class Room {
 	public Room(Scanner s, Dungeon d, boolean initState) throws NoRoomException,
 	Dungeon.IllegalDungeonFormatException, Item.NoItemException, NoNPCException
 	{
-		
+
 		title = s.nextLine();
 		desc = "";
 		if (title.equals(Dungeon.TOP_LEVEL_DELIM)) {
@@ -77,21 +77,56 @@ public class Room {
 		String lineOfDesc = s.nextLine();
 		String[] contents = lineOfDesc.split(":");
 		String header = contents[0].trim()+":";
-		if(contents.length > 1 && header.equals(Dungeon.ROOM_NPC_MARKER))
+		if(contents.length > 1 && header.equals("Lightable:"))
 		{
-			if(initState != false)
-			{
-				String[] NPC = contents[1].split(",");
-				for(String n:NPC)
-					if(d.getNPC(n.trim()) == null)
-					{throw new NPC.NoNPCException("No NPC found");}
-					else
-						this.addNPC(d.getNPC(n.trim()));
-			}
-			lineOfDesc =s.nextLine();
+			this.lightable = Boolean.parseBoolean(contents[1]);
+			lineOfDesc = s.nextLine();
 			contents = lineOfDesc.split(":");
 			header = contents[0].trim()+":";
-			if(contents.length > 1 && header.equals(Dungeon.ROOM_CONTENTS_MARKER))
+			if(contents.length > 1 && header.equals(Dungeon.ROOM_NPC_MARKER))
+			{
+				if(initState != false)
+				{
+					String[] NPC = contents[1].split(",");
+					for(String n:NPC)
+						if(d.getNPC(n.trim()) == null)
+						{throw new NPC.NoNPCException("No NPC found");}
+						else
+							this.addNPC(d.getNPC(n.trim()));
+				}
+				lineOfDesc =s.nextLine();
+				contents = lineOfDesc.split(":");
+				header = contents[0].trim()+":";
+				if(contents.length > 1 && header.equals(Dungeon.ROOM_CONTENTS_MARKER))
+				{
+					if(initState != false)
+					{
+						String[] content = contents[1].split(",");
+						for(String item: content) 
+						{	
+							if(d.getItem(item.trim()) == null)     			
+							{throw new Item.NoItemException("No item found");}
+							else
+								this.add(d.getItem(item.trim()));
+						}
+					}
+					lineOfDesc =s.nextLine();
+					while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
+							!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
+						desc += "\n"+ lineOfDesc;
+						lineOfDesc = s.nextLine();
+					}
+				}
+				else
+				{
+					while (!lineOfDesc.equals(Dungeon.SECOND_LEVEL_DELIM) &&
+							!lineOfDesc.equals(Dungeon.TOP_LEVEL_DELIM)) {
+						desc += "\n"+ lineOfDesc;
+						lineOfDesc = s.nextLine();
+					}
+				}
+			}
+			else if(contents.length > 1 && header.equals(Dungeon.ROOM_CONTENTS_MARKER))
 			{
 				if(initState != false)
 				{

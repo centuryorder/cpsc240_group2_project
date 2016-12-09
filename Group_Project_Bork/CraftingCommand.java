@@ -1,7 +1,7 @@
 package Group_Project_Bork;
 /**
  * Command class that activates crafting event
- * @author Stephen Well Son
+ * @author Yohan Hendrawan
  * @version 11/9/16.
  */
 public class CraftingCommand extends Command {

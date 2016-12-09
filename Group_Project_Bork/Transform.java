@@ -49,6 +49,11 @@ public class Transform extends Event {
 					GameState.instance().getAdventurersCurrentRoom().remove(aitem);
 					GameState.instance().getAdventurersCurrentRoom().add(resultItem);
 				}
+				else if(oldItem.trim().equals("Pickaxe"))
+				{
+					GameState.instance().getAdventurersCurrentRoom().remove(aitem);
+					GameState.instance().addToInventory(resultItem);
+				}
 			}
 			else 
 			{
