@@ -62,7 +62,7 @@ Use[Unlock]:It opens anything!
 ---
 DoorKey
 2
-break[Transform(keyHandle),Disappear]: You break the key in half
+break[Transform(KeyHandle),Wound(10),Disappear]: You break the key in half. You got a little scratch.
 Use[Unlock(n Temple)]: Temple door open
 ---
 Pickaxe
@@ -72,7 +72,7 @@ use[Transform(GlowingCrystal GlowingCrystalFragment),Score(100)]: You mine the G
 EasterEgg
 1
 shake:Nothing Happens!
-break[Transform(KeyHead),Score(10),Disappear]:Whoops! a key head is in the mids of the yolk
+break[Transform(KeyHead),Wound(10),Score(10),Disappear]:Whoops! Ouch! That sting a little. There is key head is in the mids of the yolk.
 ---
 Cookie
 1
@@ -110,7 +110,7 @@ Rooms:
 Temple
 Lightable:false
 NPC: Mysterious Man
-Contents: Pickaxe,CircularTabletEmpty
+Contents: Pickaxe,CircularTabletEmpty,DoorKey,Cookie
 You are inside what look like a temple.
 You see a circular platform with unknown engravings on one end of the temple.
 You see strange glowing crystals on the wall lighting the temple.
