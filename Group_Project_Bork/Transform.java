@@ -32,10 +32,11 @@ public class Transform extends Event {
 
 		Item resultItem = GameState.instance().getDungeon().getItem(newItem);
 		Item firstItem = GameState.instance().getDungeon().getItem(oldItem);
-		Item aitem = GameState.instance().getDungeon().getItem(anotherItem);
+
 		try {
 			if(anotherItem != null)
-			{
+			{		
+				Item aitem = GameState.instance().getDungeon().getItem(anotherItem);
 				if (GameState.instance().getItemFromInventoryNamed(oldItem) != null 
 						&& GameState.instance().getItemFromInventoryNamed(anotherItem) != null)
 				{

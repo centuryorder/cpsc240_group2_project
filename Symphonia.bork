@@ -21,7 +21,7 @@ examine: An ancient tablet with unknown symbols. Three of the hole have glowing 
 CircularTabletComplete
 5
 examine: An ancient tablet with unknown symbols. The tablet is endowed with four gems.
-Use[RoomItemEvent(CircularTabletComplete Tower_Entrance Win)]: The tablet fit on the tower door.
+use[RoomItemEvent(CircularTabletComplete Tower_Entrance Win)]: The tablet fit on the tower door.
 ---
 RedGem
 1
@@ -50,20 +50,20 @@ examine: A glowing white crystal fragment.
 ---
 KeyHandle
 1
-Use[Transform(KeyHead SkeletonKey),Score(100),Disappear]: You made a SkeletonKey
+use[Transform(KeyHead SkeletonKey),Score(100),Disappear]: You made a SkeletonKey
 ---
 KeyHead
 1
-Use[Transform(KeyHandle Skeletonkey),Score(100),Disappear]: You made a SkeletonKey
+use[Transform(KeyHandle Skeletonkey),Score(100),Disappear]: You made a SkeletonKey
 ---
 SkeletonKey
 2
-Use[Unlock]:It opens anything!
+use[Unlock]:It opens anything!
 ---
 DoorKey
 2
 break[Transform(KeyHandle),Wound(10),Disappear]: You break the key in half. You got a little scratch.
-Use[Unlock(n Temple)]: Temple door open
+use[Unlock(n Temple)]: Temple door open
 ---
 Pickaxe
 15
